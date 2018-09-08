@@ -1,0 +1,15 @@
+{
+  "name": "canvg2",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "rollup -w -c rollup.config.dev.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "rollup": "^0.65.2",
+    "rollup-plugin-livereload": "^0.6.0",
+    "rollup-plugin-serve": "^0.4.2",
+    "rollup-plugin-typescript2": "^0.17.0",
+    "typescript": "^3.0.3"
+  }
+}

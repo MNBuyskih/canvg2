@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "noImplicitAny": true,
+    "strict": true,
+    "outDir": "dist/ts",
+    "sourceRoot": "./src/",
+    "rootDir": "./src/",
+    "jsx": "react",
+    "sourceMap": true,
+    "typeRoots": [
+      "src/types"
+    ],
+    "types": [
+      "node"
+    ],
+    "strictPropertyInitialization": false
+  },
+  "files": [
+    "src/index.ts"
+  ]
+}

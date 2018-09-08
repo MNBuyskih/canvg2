@@ -1,0 +1,1 @@
+{"version":3,"file":"canvg2.js","sources":["../src/CanVG2.ts"],"sourcesContent":["export class CanVG2 {\n  constructor() {\n  }\n}\n"],"names":[],"mappings":";;;;;;;;EAAA;MACE;OACC;MACH,aAAC;EAAD,CAAC,IAAA;;;;;;;;"}
