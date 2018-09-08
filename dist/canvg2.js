@@ -3,14 +3,45 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.canvg2 = factory());
+  (global.CanVG2 = factory());
 }(this, (function () { 'use strict';
 
-  var CanVG2 = /** @class */ (function () {
-      function CanVG2() {
+  var ElementsSvg = /** @class */ (function () {
+      function ElementsSvg(element) {
+          this.element = element;
+          // this.parseChildren();
       }
+      ElementsSvg.prototype.render = function (context) {
+      };
+      return ElementsSvg;
+  }());
+  //# sourceMappingURL=ElementsSvg.js.map
+
+  var CanVG2 = /** @class */ (function () {
+      function CanVG2(canvas, svg) {
+          this.canvas = canvas;
+          var context = this.canvas.getContext("2d");
+          if (!context) {
+              throw new Error("Can`t get context from target");
+          }
+          this.context = context;
+          this.svg = svg;
+          this.parseXml();
+      }
+      CanVG2.prototype.draw = function () {
+          this.rootElement.render(this.context);
+      };
+      CanVG2.prototype.parseXml = function () {
+          this.rootElement = this.createElement(this.svg.documentElement);
+      };
+      CanVG2.prototype.createElement = function (element) {
+          return new ElementsSvg(element);
+      };
       return CanVG2;
   }());
+  //# sourceMappingURL=CanVG2.js.map
+
+  //# sourceMappingURL=index.js.map
 
   return CanVG2;
 

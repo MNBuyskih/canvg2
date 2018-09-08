@@ -10,7 +10,7 @@ export default {
     sourcemap: true,
     format: "umd",
     exports: "default",
-    name: "canvg2",
+    name: "CanVG2",
   },
 
   plugins: [

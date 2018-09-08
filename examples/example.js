@@ -11,17 +11,13 @@ function run(resources) {
     const resource = resources[i];
     const a = $(`<a href="#${resource.file}" data-svg="${resource.svg}" data-png="${resource.png}">${resource.file}</a>`);
     a.appendTo($('<li>').appendTo(examples));
-    a.on('click', (e) => {
-      showExample(e.target);
-    })
+    a.on('click', (e) => showExample(e.target))
   }
 
   const $filter = $('#filter');
   $filter.on('keyup', () => {
-    console.log($filter.val());
     examples.find('li').each((n, li) => {
       const $li = $(li);
-      console.log($li.text().indexOf($filter.val()) >= 0);
       $li.toggleClass('d-none', $li.text().indexOf($filter.val()) < 0)
     });
   });
@@ -42,6 +38,15 @@ function showExample(a) {
 
   showPng(png);
   showSvg(svg);
+
+  $.ajax(svg, {
+    complete: (e) => {
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(e.responseText, 'text/xml');
+      const canvg = new CanVG2($('#canvas').get(0), xml);
+      canvg.draw();
+    }
+  });
 }
 
 function showPng(png) {
