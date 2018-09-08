@@ -2,14 +2,20 @@
   "name": "canvg2",
   "version": "0.1.0",
   "scripts": {
-    "start": "rollup -w -c rollup.config.dev.js"
+    "start": "rollup -w -c rollup.config.dev.js",
+    "tools:svg": "ts-node tools/svgParser.ts"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1"
+  },
   "devDependencies": {
+    "@types/node": "^10.9.4",
     "rollup": "^0.65.2",
     "rollup-plugin-livereload": "^0.6.0",
     "rollup-plugin-serve": "^0.4.2",
     "rollup-plugin-typescript2": "^0.17.0",
+    "ts-node": "^7.0.1",
     "typescript": "^3.0.3"
   }
 }
