@@ -9,10 +9,9 @@ function run(resources) {
 
   for (let i in resources) {
     const resource = resources[i];
-    const a = $(`<a href="${resource.svg}" data-png="${resource.png}">${resource.file}</a>`);
+    const a = $(`<a href="#${resource.file}" data-svg="${resource.svg}" data-png="${resource.png}">${resource.file}</a>`);
     a.appendTo($('<li>').appendTo(examples));
     a.on('click', (e) => {
-      e.preventDefault();
       showExample(e.target);
     })
   }
@@ -26,11 +25,19 @@ function run(resources) {
       $li.toggleClass('d-none', $li.text().indexOf($filter.val()) < 0)
     });
   });
+
+  const hash = document.location.hash;
+  const a = examples.find(`a[href="${hash}"]`);
+  if (a.length) {
+    showExample(a);
+  } else {
+    showExample(examples.find('a').first());
+  }
 }
 
 function showExample(a) {
   const $a = $(a);
-  const svg = $a.attr('href');
+  const svg = $a.data('svg');
   const png = $a.data('png');
 
   showPng(png);
