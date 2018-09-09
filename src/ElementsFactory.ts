@@ -3,13 +3,14 @@ import {ElementsDummy, ElementsSvg} from "elements";
 export class ElementsFactory {
   static create(element: HTMLElement) {
     let newElement: any;
+    const nodeName = element.nodeName.toLowerCase();
 
-    switch (element.nodeName) {
+    switch (nodeName) {
       case "svg":
         newElement = new ElementsSvg(element);
         break;
       default:
-        console.warn(`Unknown element ${element.nodeName}`);
+        console.warn(`Unknown element "${nodeName}"`);
         newElement = new ElementsDummy(element);
         break;
     }

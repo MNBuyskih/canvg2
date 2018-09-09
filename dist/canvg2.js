@@ -51,6 +51,39 @@
         };
         return Property;
     }());
+    //# sourceMappingURL=Property.js.map
+
+    var ListOfNumbersProperty = /** @class */ (function (_super) {
+        __extends(ListOfNumbersProperty, _super);
+        function ListOfNumbersProperty() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Object.defineProperty(ListOfNumbersProperty.prototype, "value", {
+            get: function () {
+                return this.parsedValue;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(ListOfNumbersProperty.prototype, "parsedValue", {
+            get: function () {
+                if (!this._parsedValue) {
+                    this._parsedValue = this._value
+                        .replace(/\s+/g, " ")
+                        .split(" ")
+                        .map(parseFloat);
+                }
+                return this._parsedValue;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        ListOfNumbersProperty.prototype.toString = function () {
+            return this.parsedValue.join(" ");
+        };
+        return ListOfNumbersProperty;
+    }(Property));
+    //# sourceMappingURL=ListOfNumbersProperty.js.map
 
     var Attribute = /** @class */ (function () {
         function Attribute(name, value) {
@@ -59,12 +92,15 @@
         }
         Attribute.prototype.getValue = function (value) {
             switch (this.name) {
+                case "viewport":
+                    return new ListOfNumbersProperty(value);
                 default:
                     return new Property(value);
             }
         };
         return Attribute;
     }());
+    //# sourceMappingURL=Attribute.js.map
 
     var Attributes = /** @class */ (function () {
         function Attributes(attributes) {
@@ -94,6 +130,7 @@
         };
         return Attributes;
     }());
+    //# sourceMappingURL=Attributes.js.map
 
     var AbstractElements = /** @class */ (function () {
         function AbstractElements(element) {
@@ -107,6 +144,7 @@
         };
         return AbstractElements;
     }());
+    //# sourceMappingURL=AbstractElements.js.map
 
     var ElementsDummy = /** @class */ (function (_super) {
         __extends(ElementsDummy, _super);
@@ -115,6 +153,7 @@
         }
         return ElementsDummy;
     }(AbstractElements));
+    //# sourceMappingURL=ElementsDummy.js.map
 
     var ElementsSvg = /** @class */ (function (_super) {
         __extends(ElementsSvg, _super);
@@ -123,18 +162,22 @@
         }
         return ElementsSvg;
     }(AbstractElements));
+    //# sourceMappingURL=ElementsSvg.js.map
+
+    //# sourceMappingURL=index.js.map
 
     var ElementsFactory = /** @class */ (function () {
         function ElementsFactory() {
         }
         ElementsFactory.create = function (element) {
             var newElement;
-            switch (element.nodeName) {
+            var nodeName = element.nodeName.toLowerCase();
+            switch (nodeName) {
                 case "svg":
                     newElement = new ElementsSvg(element);
                     break;
                 default:
-                    console.warn("Unknown element " + element.nodeName);
+                    console.warn("Unknown element \"" + nodeName + "\"");
                     newElement = new ElementsDummy(element);
                     break;
             }
@@ -168,6 +211,9 @@
         };
         return CanVG2;
     }());
+    //# sourceMappingURL=CanVG2.js.map
+
+    //# sourceMappingURL=index.js.map
 
     return CanVG2;
 
