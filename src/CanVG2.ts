@@ -17,16 +17,10 @@ export class CanVG2 {
     this.context = context;
     this.source = svg;
 
-    this.parseXml();
+    this.rootElement = ElementsFactory.create(this.source.documentElement, true);
   }
 
   draw() {
     // this.rootElement.render(this.context);
   }
-
-  private parseXml() {
-    this.rootElement = ElementsFactory.create(this.source.documentElement);
-    this.rootElement.root = true;
-  }
-
 }

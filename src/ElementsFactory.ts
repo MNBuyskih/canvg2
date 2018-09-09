@@ -1,13 +1,16 @@
-import {ElementsDummy, ElementsSvg} from "elements";
+import {ElementsDummy, ElementsLine, ElementsSvg} from "elements";
 
 export class ElementsFactory {
-  static create(element: HTMLElement) {
+  static create(element: HTMLElement, root: boolean = false) {
     let newElement: any;
     const nodeName = element.nodeName.toLowerCase();
 
     switch (nodeName) {
       case "svg":
         newElement = new ElementsSvg(element);
+        break;
+      case "line":
+        newElement = new ElementsLine(element);
         break;
       default:
         console.warn(`Unknown element "${nodeName}"`);
@@ -16,6 +19,7 @@ export class ElementsFactory {
     }
 
     newElement.children = ElementsFactory.getChildren(element);
+    newElement.root = root;
     return newElement;
   }
 
