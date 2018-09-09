@@ -49,6 +49,12 @@ describe(RGBA, () => {
       expect(rgba.rgba).toEqual("rgba(240,248,255,1)");
       expect(rgba.color).toEqual("aliceblue");
       expect(rgba.hash).toEqual("#f0f8ff");
+
+      rgba = new RGBA("#000");
+      expect(rgba.hash).toEqual("#000000");
+
+      rgba = new RGBA("#012");
+      expect(rgba.hash).toEqual("#001122");
     });
 
     it("rgb color", () => {

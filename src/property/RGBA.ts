@@ -7,22 +7,8 @@ export class RGBA {
   constructor(color: string)
   constructor(hash: string)
   constructor(color: string) {
-    this._color = color;
-
-    if (/^#([0-9a-f]{3}|[0-9a-f]{6})/.test(color)) {
-      this.parse(color);
-    } else if (/^rgb\(/.test(color)) {
-      this.parseRgb(color);
-    } else if (/^rgba\(/.test(color)) {
-      this.parseRgba(color);
-    } else if (webSafeColors[color]) {
-      this.parse(webSafeColors[color]);
-    } else {
-      throw new Error(`Incorrect color "${color}"`);
-    }
+    this.parse(color);
   }
-
-  private _color: string;
 
   get color() {
     const hash = this.hash;
@@ -40,7 +26,31 @@ export class RGBA {
   get hash() {
     return "#" + [this.r, this.g, this.b]
       .map(c => c.toString(16))
+      .map(c => c.length == 1 ? `0${c}` : c)
       .join("");
+  }
+
+  private parse(color: string) {
+    color = color.trim();
+
+    let r, g, b, a;
+
+    if (/^#([0-9a-f]{3}|[0-9a-f]{6})/.test(color)) {
+      [r, g, b, a] = this.parseHex(color);
+    } else if (/^rgb\(/.test(color)) {
+      [r, g, b, a] = this.parseRgb(color);
+    } else if (/^rgba\(/.test(color)) {
+      [r, g, b, a] = this.parseRgba(color);
+    } else if (webSafeColors[color]) {
+      [r, g, b, a] = this.parseHex(webSafeColors[color]);
+    } else {
+      throw new Error(`Incorrect color "${color}"`);
+    }
+
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.a = a;
   }
 
   private parseRgb(rgb: string) {
@@ -58,9 +68,7 @@ export class RGBA {
 
     const [r, g, b] = colors;
 
-    this.r = r;
-    this.g = g;
-    this.b = b;
+    return [r, g, b, 1];
   }
 
   private parseRgba(rgba: string) {
@@ -76,31 +84,18 @@ export class RGBA {
       throw new Error(`Incorrect color ${rgba}`);
     }
 
-    const [r, g, b, a] = colors;
-
-    this.r = r;
-    this.g = g;
-    this.b = b;
-    this.a = a;
+    return colors;
   }
 
-  private parse(hex: string) {
+  private parseHex(hex: string): number[] {
     hex = hex.substr(1);
 
-    let r, g, b;
+    const [r, g, b] = (hex.length == 6
+      ? hex.match(/.{1,2}/g) as string[]
+      : hex.split("").map(c => c.length == 1 ? `${c}${c}` : c))
+      .map(c => parseInt(c, 16));
 
-    if (hex.length == 6) {
-      [r, g, b] = hex.match(/.{1,2}/g) as string[];
-    } else {
-      [r, g, b] = hex.split("");
-      r = `${r}${r}`;
-      g = `${g}${g}`;
-      b = `${b}${b}`;
-    }
-
-    this.r = parseInt(r, 16);
-    this.g = parseInt(g, 16);
-    this.b = parseInt(b, 16);
+    return [r, g, b, 1];
   }
 }
 
