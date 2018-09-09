@@ -19,6 +19,25 @@ describe(NumberProperty, () => {
       expect(new NumberProperty("10px").units).toEqual("px");
       expect(new NumberProperty("20%").units).toEqual("%");
     });
+
+    it("sourld store units in contructor", () => {
+      expect(new NumberProperty(10, "pt").units).toEqual("pt");
+    });
   });
 
+  describe("convert any units to pixels", () => {
+    it("return new NumberProperty", () => {
+      expect(new NumberProperty("10").toPixels()).toBeInstanceOf(NumberProperty);
+    });
+
+    it("convert no units", () => {
+      expect(new NumberProperty("10").toPixels().value).toEqual(10);
+      expect(new NumberProperty("10px").toPixels().value).toEqual(10);
+      expect(new NumberProperty(10, "pt").toPixels().value).toEqual(parseFloat((1 / 72 * 96 * 10).toFixed(2)));
+      expect(new NumberProperty(10, "pc").toPixels().value).toEqual(parseFloat((((1 / 72 * 96) * 12 * 10)).toFixed(2)));
+      expect(new NumberProperty(10, "cm").toPixels().value).toEqual(parseFloat((10 * 96 / 2.54).toFixed(2)));
+      expect(new NumberProperty(10, "mm").toPixels().value).toEqual(parseFloat((10 * 96 / 25.4).toFixed(2)));
+      expect(new NumberProperty(10, "in").toPixels().value).toEqual(960);
+    });
+  });
 });

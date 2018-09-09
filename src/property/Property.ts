@@ -1,9 +1,9 @@
 export class Property {
-  constructor(value: string) {
+  constructor(value: string | null) {
     this._value = value;
   }
 
-  protected _value: string;
+  protected _value: string | null;
 
   get value(): any {
     return this._value;
