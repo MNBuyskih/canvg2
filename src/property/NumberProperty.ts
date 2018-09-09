@@ -40,7 +40,7 @@ export class NumberProperty extends Property {
     return this.parsedValue();
   }
 
-  toPixels() {
+  toPixels(relative?: number): NumberProperty {
     const perDPI = this.value * NumberProperty.DPI;
     const inPt = perDPI / 72;
 
@@ -57,6 +57,12 @@ export class NumberProperty extends Property {
 
       case "in":
         return new NumberProperty(perDPI, "px");
+
+      case "%":
+        if (relative === undefined) {
+          throw new Error("Relative value is not valid");
+        }
+        return new NumberProperty(this.value * relative / 100, "px");
 
       default:
         return new NumberProperty(this.value, "px");

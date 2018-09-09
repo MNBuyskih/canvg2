@@ -38,6 +38,9 @@ describe(NumberProperty, () => {
       expect(new NumberProperty(10, "cm").toPixels().value).toEqual(parseFloat((10 * 96 / 2.54).toFixed(2)));
       expect(new NumberProperty(10, "mm").toPixels().value).toEqual(parseFloat((10 * 96 / 25.4).toFixed(2)));
       expect(new NumberProperty(10, "in").toPixels().value).toEqual(960);
+
+      expect(() => new NumberProperty(10, "%").toPixels()).toThrow();
+      expect(new NumberProperty(10, "%").toPixels(200).value).toEqual(20);
     });
   });
 });
