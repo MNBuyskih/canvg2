@@ -1,6 +1,6 @@
-import {Attribute} from "./Attribute";
-import {Attributes} from "./Attributes";
-import {IAttributes} from "./types/IAttributes";
+import {Attribute} from "Attribute";
+import {Attributes} from "Attributes";
+import {IAttributes} from "types/IAttributes";
 
 export class AbstractElements {
   // static create: (element: HTMLElement) => (ElementsSvg | ElementsDummy);

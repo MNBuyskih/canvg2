@@ -1,11 +1,11 @@
-import {Property} from "./Property";
+import {Property} from "property/Property";
 
 export class ListOfNumbersProperty extends Property {
-  private _parsedValue: number[];
-
   get value(): number[] {
     return this.parsedValue;
   }
+
+  private _parsedValue: number[];
 
   private get parsedValue(): number[] {
     if (!this._parsedValue) {

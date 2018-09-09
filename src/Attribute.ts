@@ -1,5 +1,5 @@
-import {Property} from "./property/Property";
-import {IAttributes} from "./types/IAttributes";
+import {Property} from "property/Property";
+import {IAttributes} from "types/IAttributes";
 
 export class Attribute {
   name: string;

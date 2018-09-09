@@ -57,7 +57,7 @@ module.exports = {
   // A set of global variables that need to be available in all test environments
   globals: {
     "ts-jest": {
-      "tsConfigFile": "tsconfig.json"
+      "tsConfigFile": "tests/tsconfig.json"
     }
   },
 
@@ -181,4 +181,9 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+
+  moduleDirectories: [
+    "node_modules",
+    ".",
+  ]
 };

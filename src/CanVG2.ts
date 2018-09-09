@@ -1,5 +1,5 @@
-import {AbstractElements} from "./AbstractElements";
-import {ElementsFactory} from "./ElementsFactory";
+import {AbstractElements} from "elements/AbstractElements";
+import {ElementsFactory} from "ElementsFactory";
 
 export class CanVG2 {
   rootElement: AbstractElements;

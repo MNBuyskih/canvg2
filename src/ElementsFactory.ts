@@ -1,4 +1,4 @@
-import {ElementsDummy, ElementsSvg} from "./elements";
+import {ElementsDummy, ElementsSvg} from "elements";
 
 export class ElementsFactory {
   static create(element: HTMLElement) {

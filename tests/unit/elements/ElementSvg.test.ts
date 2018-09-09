@@ -1,8 +1,8 @@
-import {AbstractElements} from "../../../src/AbstractElements";
-import {Attributes} from "../../../src/Attributes";
-import {ElementsSvg} from "../../../src/elements/ElementsSvg";
-import {ElementsFactory} from "../../../src/ElementsFactory";
-import {xml} from "../../xml";
+import {Attributes} from "src/Attributes";
+import {ElementsSvg} from "src/elements";
+import {AbstractElements} from "src/elements/AbstractElements";
+import {ElementsFactory} from "src/ElementsFactory";
+import {xml} from "xml";
 
 describe(ElementsSvg, () => {
   describe("attributes", () => {

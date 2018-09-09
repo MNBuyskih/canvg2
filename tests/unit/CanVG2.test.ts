@@ -1,6 +1,6 @@
-import {CanVG2} from "../../src/CanVG2";
-import {mockCanvas} from "../MockCanvas";
-import {xml} from "../xml";
+import {CanVG2} from "src/CanVG2";
+import {mockCanvas} from "MockCanvas";
+import {xml} from "xml";
 
 describe(CanVG2, () => {
   const doc = xml("<svg></svg>");

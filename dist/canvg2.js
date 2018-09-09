@@ -51,7 +51,6 @@
         };
         return Property;
     }());
-    //# sourceMappingURL=Property.js.map
 
     var Attribute = /** @class */ (function () {
         function Attribute(name, value) {
@@ -66,7 +65,6 @@
         };
         return Attribute;
     }());
-    //# sourceMappingURL=Attribute.js.map
 
     var Attributes = /** @class */ (function () {
         function Attributes(attributes) {
@@ -96,7 +94,6 @@
         };
         return Attributes;
     }());
-    //# sourceMappingURL=Attributes.js.map
 
     var AbstractElements = /** @class */ (function () {
         function AbstractElements(element) {
@@ -110,7 +107,6 @@
         };
         return AbstractElements;
     }());
-    //# sourceMappingURL=AbstractElements.js.map
 
     var ElementsDummy = /** @class */ (function (_super) {
         __extends(ElementsDummy, _super);
@@ -119,7 +115,6 @@
         }
         return ElementsDummy;
     }(AbstractElements));
-    //# sourceMappingURL=ElementsDummy.js.map
 
     var ElementsSvg = /** @class */ (function (_super) {
         __extends(ElementsSvg, _super);
@@ -128,9 +123,6 @@
         }
         return ElementsSvg;
     }(AbstractElements));
-    //# sourceMappingURL=ElementsSvg.js.map
-
-    //# sourceMappingURL=index.js.map
 
     var ElementsFactory = /** @class */ (function () {
         function ElementsFactory() {
@@ -176,9 +168,6 @@
         };
         return CanVG2;
     }());
-    //# sourceMappingURL=CanVG2.js.map
-
-    //# sourceMappingURL=index.js.map
 
     return CanVG2;
 

@@ -1,4 +1,4 @@
-import {ListOfNumbersProperty} from "../../../src/property/ListOfNumbersProperty";
+import {ListOfNumbersProperty} from "src/property/ListOfNumbersProperty";
 
 describe(ListOfNumbersProperty, () => {
   it("should convert value to list of numbers", () => {
