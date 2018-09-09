@@ -1,3 +1,4 @@
+import {ListOfNumbersProperty} from "property/ListOfNumbersProperty";
 import {Property} from "property/Property";
 import {IAttributes} from "types/IAttributes";
 
@@ -12,6 +13,8 @@ export class Attribute {
 
   private getValue(value: string) {
     switch (this.name) {
+      case "viewport":
+        return new ListOfNumbersProperty(value);
       default:
         return new Property(value);
     }
