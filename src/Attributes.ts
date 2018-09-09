@@ -25,9 +25,11 @@ export class Attributes {
   }
 
   private fillAttributes(attributes: NamedNodeMap) {
-    for (let i = 0; i < attributes.length; i++) {
-      const {name, value} = attributes[i];
-      this.attributes[name] = new Attribute(name as keyof IAttributes, value);
-    }
+    this.attributes = Array.from(attributes)
+      .reduce((memo, attribute) => {
+        const {name, value} = attribute;
+        memo[name] = new Attribute(name as keyof IAttributes, value);
+        return memo;
+      }, this.attributes);
   }
 }
