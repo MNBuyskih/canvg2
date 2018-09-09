@@ -1,5 +1,10 @@
+import {Attribute} from "../Attribute";
+import {Attributes} from "../Attributes";
+import {IAttributes} from "../types/IAttributes";
+
 export class ElementsSvg {
   root: boolean = false;
+  attributes: Record<keyof IAttributes, Attribute | undefined>;
 
   constructor(private element: HTMLElement) {
     this.getAttributes();
@@ -10,6 +15,6 @@ export class ElementsSvg {
   }
 
   private getAttributes() {
-
+    this.attributes = Attributes.create(this.element.attributes);
   }
 }

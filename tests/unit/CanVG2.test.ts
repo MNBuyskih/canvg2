@@ -2,16 +2,18 @@ import {CanVG2} from "../../src/CanVG2";
 import {mockCanvas} from "../MockCanvas";
 import {xml} from "../xml";
 
-describe("CanVG2", () => {
+describe(CanVG2, () => {
   const doc = xml("<svg></svg>");
   let cvg: CanVG2;
 
-  beforeEach(() => {
-    cvg = new CanVG2(mockCanvas, doc);
-  });
+  describe("elements", () => {
+    beforeEach(() => {
+      cvg = new CanVG2(mockCanvas, doc);
+    });
 
-  it("Root element should be marked as root", () => {
-    expect(cvg.rootElement.root).toBeTruthy();
+    it("Root element should be marked as root", () => {
+      expect(cvg.rootElement.root).toBeTruthy();
+    });
   });
 
   describe("context", () => {
