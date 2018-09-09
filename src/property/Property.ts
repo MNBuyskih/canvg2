@@ -1,6 +1,9 @@
 export class Property {
-  constructor(protected _value: string) {
+  constructor(value: string) {
+    this._value = value;
   }
+
+  protected _value: string;
 
   get value(): any {
     return this._value;
