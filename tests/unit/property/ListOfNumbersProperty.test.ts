@@ -4,6 +4,8 @@ describe(ListOfNumbersProperty, () => {
   it("should convert value to list of numbers", () => {
     const prop = new ListOfNumbersProperty("0 0 100 100");
     expect(prop.value).toEqual([0, 0, 100, 100]);
+    expect(new ListOfNumbersProperty("").value).toEqual([]);
+    expect(new ListOfNumbersProperty(null).value).toEqual([]);
   });
 
   it("should return string when needed", () => {

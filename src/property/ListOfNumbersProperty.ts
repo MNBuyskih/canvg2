@@ -9,10 +9,17 @@ export class ListOfNumbersProperty extends Property {
 
   private get parsedValue(): number[] {
     if (!this._parsedValue) {
-      this._parsedValue = this._value
-        .replace(/\s+/g, " ")
-        .split(" ")
-        .map(parseFloat);
+      if (this._value === null) {
+        this._parsedValue = [];
+      } else {
+        this._parsedValue = this._value
+          .toString()
+          .trim()
+          .replace(/\s+/g, " ")
+          .split(" ")
+          .filter(c => c != "")
+          .map(parseFloat);
+      }
     }
 
     return this._parsedValue;
