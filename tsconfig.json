@@ -10,14 +10,14 @@
     "strict": true,
     "outDir": "dist/ts",
     "sourceRoot": "./src/",
-    "rootDir": "./src/",
     "jsx": "react",
     "sourceMap": true,
     "typeRoots": [
       "src/types"
     ],
     "types": [
-      "node"
+      "node",
+      "jest"
     ],
     "strictPropertyInitialization": false
   },

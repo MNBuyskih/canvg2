@@ -1,10 +1,10 @@
 import {ElementsSvg} from "./elements/ElementsSvg";
 
 export class CanVG2 {
+  rootElement: ElementsSvg;
+  context: CanvasRenderingContext2D;
   private canvas: HTMLCanvasElement;
   private svg: XMLDocument;
-  private rootElement: ElementsSvg;
-  private context: CanvasRenderingContext2D;
 
   constructor(canvas: HTMLCanvasElement, svg: XMLDocument) {
     this.canvas = canvas;
@@ -25,6 +25,7 @@ export class CanVG2 {
 
   private parseXml() {
     this.rootElement = this.createElement(this.svg.documentElement);
+    this.rootElement.root = true;
   }
 
   private createElement(element: HTMLElement) {

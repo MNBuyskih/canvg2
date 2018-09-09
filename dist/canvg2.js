@@ -9,13 +9,15 @@
   var ElementsSvg = /** @class */ (function () {
       function ElementsSvg(element) {
           this.element = element;
-          // this.parseChildren();
+          this.root = false;
+          this.getAttributes();
       }
       ElementsSvg.prototype.render = function (context) {
       };
+      ElementsSvg.prototype.getAttributes = function () {
+      };
       return ElementsSvg;
   }());
-  //# sourceMappingURL=ElementsSvg.js.map
 
   var CanVG2 = /** @class */ (function () {
       function CanVG2(canvas, svg) {
@@ -33,15 +35,13 @@
       };
       CanVG2.prototype.parseXml = function () {
           this.rootElement = this.createElement(this.svg.documentElement);
+          this.rootElement.root = true;
       };
       CanVG2.prototype.createElement = function (element) {
           return new ElementsSvg(element);
       };
       return CanVG2;
   }());
-  //# sourceMappingURL=CanVG2.js.map
-
-  //# sourceMappingURL=index.js.map
 
   return CanVG2;
 
