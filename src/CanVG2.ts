@@ -1,10 +1,11 @@
-import {ElementsSvg} from "./elements/ElementsSvg";
+import {AbstractElements} from "./AbstractElements";
+import {ElementsFactory} from "./ElementsFactory";
 
 export class CanVG2 {
-  rootElement: ElementsSvg;
+  rootElement: AbstractElements;
   context: CanvasRenderingContext2D;
   private canvas: HTMLCanvasElement;
-  private svg: XMLDocument;
+  private source: XMLDocument;
 
   constructor(canvas: HTMLCanvasElement, svg: XMLDocument) {
     this.canvas = canvas;
@@ -14,21 +15,18 @@ export class CanVG2 {
     }
 
     this.context = context;
-    this.svg = svg;
+    this.source = svg;
 
     this.parseXml();
   }
 
   draw() {
-    this.rootElement.render(this.context);
+    // this.rootElement.render(this.context);
   }
 
   private parseXml() {
-    this.rootElement = this.createElement(this.svg.documentElement);
+    this.rootElement = ElementsFactory.create(this.source.documentElement);
     this.rootElement.root = true;
   }
 
-  private createElement(element: HTMLElement) {
-    return new ElementsSvg(element);
-  }
 }
