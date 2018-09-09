@@ -3,19 +3,25 @@ export class RGBA {
   g: number;
   b: number;
 
+  constructor(color: string)
+  constructor(hash: string)
   constructor(color: string) {
     this._color = color;
-    if (!webSafeColors[color]) {
+
+    if (/^#([0-9a-f]{3}|[0-9a-f]{6})/.test(color)) {
+      this.parse(color);
+    } else if (webSafeColors[color]) {
+      this.parse(webSafeColors[color]);
+    } else {
       throw new Error(`Incorrect color ${color}`);
     }
-
-    this.parse(webSafeColors[color]);
   }
 
   private _color: string;
 
   get color() {
-    return this._color;
+    const hash = this.hash;
+    return Object.keys(webSafeColors).find(key => webSafeColors[key] === hash) || hash;
   }
 
   get a() {
@@ -31,20 +37,35 @@ export class RGBA {
   }
 
   get hash() {
-    return webSafeColors[this.color];
+    const r = this.r.toString(16);
+    const g = this.g.toString(16);
+    const b = this.b.toString(16);
+    return `#${r}${g}${b}`;
   }
 
   private parse(hex: string) {
     hex = hex.substr(1);
-    if (hex.length == 6) {
-      const r = hex.substr(0, 2);
-      const g = hex.substr(2, 2);
-      const b = hex.substr(4, 2);
 
-      this.r = parseInt(r, 16);
-      this.g = parseInt(g, 16);
-      this.b = parseInt(b, 16);
+    let r;
+    let g;
+    let b;
+
+    if (hex.length == 6) {
+      r = hex.substr(0, 2);
+      g = hex.substr(2, 2);
+      b = hex.substr(4, 2);
+    } else {
+      r = hex.substr(0, 1);
+      g = hex.substr(1, 1);
+      b = hex.substr(2, 1);
+      r = `${r}${r}`;
+      g = `${g}${g}`;
+      b = `${b}${b}`;
     }
+
+    this.r = parseInt(r, 16);
+    this.g = parseInt(g, 16);
+    this.b = parseInt(b, 16);
   }
 }
 
