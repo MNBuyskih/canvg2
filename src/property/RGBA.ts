@@ -1,7 +1,8 @@
 export class RGBA {
-  r: number;
-  g: number;
-  b: number;
+  r: number = 0;
+  g: number = 0;
+  b: number = 0;
+  a: number = 1;
 
   constructor(color: string)
   constructor(hash: string)
@@ -10,10 +11,14 @@ export class RGBA {
 
     if (/^#([0-9a-f]{3}|[0-9a-f]{6})/.test(color)) {
       this.parse(color);
+    } else if (/^rgb\(/.test(color)) {
+      this.parseRgb(color);
+    } else if (/^rgba\(/.test(color)) {
+      this.parseRgba(color);
     } else if (webSafeColors[color]) {
       this.parse(webSafeColors[color]);
     } else {
-      throw new Error(`Incorrect color ${color}`);
+      throw new Error(`Incorrect color "${color}"`);
     }
   }
 
@@ -24,40 +29,70 @@ export class RGBA {
     return Object.keys(webSafeColors).find(key => webSafeColors[key] === hash) || hash;
   }
 
-  get a() {
-    return 255;
-  }
-
   get rgb() {
-    return `rgb(${this.r},${this.g},${this.b})`;
+    return `rgb(${[this.r, this.g, this.b].join(",")})`;
   }
 
   get rgba() {
-    return `rgba(${this.r},${this.g},${this.b},1)`;
+    return `rgba(${[this.r, this.g, this.b, this.a].join(",")})`;
   }
 
   get hash() {
-    const r = this.r.toString(16);
-    const g = this.g.toString(16);
-    const b = this.b.toString(16);
-    return `#${r}${g}${b}`;
+    return "#" + [this.r, this.g, this.b]
+      .map(c => c.toString(16))
+      .join("");
+  }
+
+  private parseRgb(rgb: string) {
+    const colors = rgb
+      .replace("rgb(", "")
+      .replace(")", "")
+      .split(",")
+      .map(c => c.trim())
+      .filter(c => c !== "")
+      .map(parseFloat);
+
+    if (colors.length !== 3) {
+      throw new Error(`Incorrect color ${rgb}`);
+    }
+
+    const [r, g, b] = colors;
+
+    this.r = r;
+    this.g = g;
+    this.b = b;
+  }
+
+  private parseRgba(rgba: string) {
+    const colors = rgba
+      .replace("rgba(", "")
+      .replace(")", "")
+      .split(",")
+      .map(c => c.trim())
+      .filter(c => c !== "")
+      .map(parseFloat);
+
+    if (colors.length !== 4) {
+      throw new Error(`Incorrect color ${rgba}`);
+    }
+
+    const [r, g, b, a] = colors;
+
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.a = a;
   }
 
   private parse(hex: string) {
     hex = hex.substr(1);
 
-    let r;
-    let g;
-    let b;
+    let r, g, b;
 
     if (hex.length == 6) {
-      r = hex.substr(0, 2);
-      g = hex.substr(2, 2);
-      b = hex.substr(4, 2);
+      [r, g, b] = hex.match(/.{1,2}/g) as string[];
     } else {
-      r = hex.substr(0, 1);
-      g = hex.substr(1, 1);
-      b = hex.substr(2, 1);
+      [r, g, b] = hex.split("");
       r = `${r}${r}`;
       g = `${g}${g}`;
       b = `${b}${b}`;
