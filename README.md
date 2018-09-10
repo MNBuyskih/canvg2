@@ -14,4 +14,5 @@
     - For list of numbers use `ListOfNumbersProperty`
     - For number - `NumberProperty`
     - For color - `ColorProperty`
+    - For [paint](https://developer.mozilla.org/en-US/docs/Web/SVG/Content_type#Paint) - `PaintProperty`
     - For string (default) - `Property`

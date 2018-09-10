@@ -1,17 +1,20 @@
 import {Attribute} from "Attribute";
+import {AbstractElements} from "elements/AbstractElements";
 import {IAttributes} from "types/IAttributes";
 import {styleAttributes} from "types/styleAttributes";
 
 export class Attributes {
   private attributes: { [key: string]: Attribute } = {};
+  private element: AbstractElements;
 
-  constructor(attributes: Attr[]) {
+  constructor(attributes: Attr[], element: AbstractElements) {
+    this.element = element;
     this.fillAttributes(attributes);
   }
 
-  static create(attributes: Attr[]): Record<keyof IAttributes, Attribute | undefined> {
+  static create(attributes: Attr[], element: AbstractElements): Record<keyof IAttributes, Attribute | undefined> {
     // @ts-ignore
-    const attrs = new Attributes(attributes) as IAttributes;
+    const attrs = new Attributes(attributes, element) as IAttributes;
 
     // @ts-ignore
     return new Proxy(attrs, {

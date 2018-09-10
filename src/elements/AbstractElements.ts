@@ -9,15 +9,15 @@ export class AbstractElements {
   root: boolean = false;
   attributes: Record<keyof IAttributes, Attribute | undefined>;
   stylesAttributes: Record<keyof IStyleAttributes, Attribute | undefined>;
-  children: AbstractElements[];
+  children: AbstractElements[] = [];
 
   constructor(private element: HTMLElement) {
     this.getAttributes();
   }
 
   private getAttributes() {
-    const [styleAttributes, attributes] = Attributes.separateAttributes(Array.from(this.element.attributes));
-    this.attributes = Attributes.create(attributes);
+    const [styleAttributes, attributes] = Attributes.separateAttributes(Array.from(this.element.attributes || []));
+    this.attributes = Attributes.create(attributes, this);
     this.stylesAttributes = StyleAttributes.create(styleAttributes);
   }
 }
