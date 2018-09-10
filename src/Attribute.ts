@@ -1,3 +1,4 @@
+import {ColorProperty} from "property/ColorProperty";
 import {ListOfNumbersProperty} from "property/ListOfNumbersProperty";
 import {Property} from "property/Property";
 import {IAttributes} from "types/IAttributes";
@@ -15,6 +16,8 @@ export class Attribute {
     switch (this.name) {
       case "viewport":
         return new ListOfNumbersProperty(value);
+      case "stroke":
+        return new ColorProperty(value);
       default:
         return new Property(value);
     }

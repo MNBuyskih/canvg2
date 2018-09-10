@@ -8,7 +8,7 @@ describe(Attributes, () => {
   describe("attributes", () => {
     it("should be list of Attribute", () => {
       const svg = xml("<svg viewBox=\"0 0 100 100\"></svg>");
-      let a: Record<keyof IAttributes, Attribute | undefined> = Attributes.create(svg.documentElement.attributes);
+      let a: Record<keyof IAttributes, Attribute | undefined> = Attributes.create(Array.from(svg.documentElement.attributes));
       expect(a.viewBox).toBeInstanceOf(Attribute);
       expect(a.viewBox && a.viewBox.value).toBeInstanceOf(Property);
     });
