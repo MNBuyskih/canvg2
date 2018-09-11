@@ -10,6 +10,10 @@ export class RGBA {
     this.parse(color);
   }
 
+  toString() {
+    return this.color;
+  }
+
   get color() {
     const hash = this.hash;
     return Object.keys(webSafeColors).find(key => webSafeColors[key] === hash) || hash;

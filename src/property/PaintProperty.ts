@@ -27,27 +27,42 @@ export class PaintProperty extends Property {
 
     const value = this._value.trim();
 
-    if (["none", "context-fill", "context-stroke"].indexOf(value) >= 0) {
-      return this._parsedValue = value as IPaintEnums;
-    }
+    return this._parsedValue = this.enumValues(value) ||
+      this.childValue(value) ||
+      this.childNValue(value) ||
+      this.colorValue(value)
+      ;
+  }
 
-    if (this.element && value === "child") {
-      return this._parsedValue = this.element.children[0] || null;
-    }
+  private enumValues(value: string): IPaintEnums | null {
+    return ["none", "context-fill", "context-stroke"].indexOf(value) >= 0
+      ? (this._parsedValue = value as IPaintEnums)
+      : null;
+  }
 
+  private childValue(value: string): AbstractElements | null {
+    return this.element && value === "child"
+      ? (this._parsedValue = this.element.children[0] || null)
+      : null;
+  }
+
+  private childNValue(value: string): AbstractElements | null {
     if (this.element && /^child\(\d+\)$/.test(value)) {
       const _n = value
         .replace("child(", "")
         .replace(")", "");
       const n = parseFloat(_n) - 1;
       return this._parsedValue = this.element.children[n] || null;
+    } else {
+      return null;
     }
+  }
 
+  private colorValue(value: string): RGBA | null {
     try {
-      return this._parsedValue = new RGBA(this._value);
+      return this._parsedValue = new RGBA(value);
     } catch (e) {
       return this._parsedValue = null;
     }
   }
-
 }

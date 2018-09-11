@@ -17,4 +17,14 @@ describe(ListOfNumbersProperty, () => {
     const prop = new ListOfNumbersProperty("0\t\t0   100 \n\t\n 100");
     expect(prop + "").toEqual("0 0 100 100");
   });
+
+  it("should return empty array for null source value", () => {
+    expect(new ListOfNumbersProperty(null).value).toEqual([]);
+  });
+
+  it("should cache parsed value", () => {
+    const value = new ListOfNumbersProperty(null).value;
+    expect(value).toEqual([]);
+    expect(value).toEqual([]);
+  });
 });

@@ -16,7 +16,7 @@ export class AbstractElements {
   }
 
   private getAttributes() {
-    const [styleAttributes, attributes] = Attributes.separateAttributes(Array.from(this.element.attributes || []));
+    const [styleAttributes, attributes] = Attributes.separateAttributes(Array.from(this.element.attributes));
     this.attributes = Attributes.create(attributes, this);
     this.stylesAttributes = StyleAttributes.create(styleAttributes);
   }

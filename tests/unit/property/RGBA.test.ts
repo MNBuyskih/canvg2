@@ -105,4 +105,12 @@ describe(RGBA, () => {
       expect(rgba.color).toEqual("white");
     });
   });
+
+  describe("toString", () => {
+    it("should return color value", () => {
+      const color = new RGBA("white");
+      expect(color.color).toEqual("white");
+      expect(color + "").toEqual("white");
+    });
+  });
 });
