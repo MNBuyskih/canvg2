@@ -1,29 +1,24 @@
-import {AbstractElements} from "src/elements/AbstractElements";
+import {ElementsFactory} from "src/ElementsFactory";
 import {UrlProperty} from "src/property/UrlProperty";
+import {xml} from "xml";
 
 describe(UrlProperty, () => {
-  describe("keep ids and elements", () => {
-    it("should save element", () => {
-      expect(UrlProperty.define("id", new AbstractElements(document.createElement("span"))));
-    });
-    it("should return element", () => {
-      const element = new AbstractElements(document.createElement("span"));
-      UrlProperty.define("id", element);
-      expect(UrlProperty.get("id")).toEqual(element);
-    });
-    it("should return null if wrong id", () => {
-      expect(UrlProperty.get("wrong id")).toBeNull();
-    });
+  beforeEach(() => ElementsFactory.createStore());
+
+  it("should return element in value", () => {
+    const svg = xml(`<svg id="test"></svg>`);
+    const element = ElementsFactory.create(svg.documentElement);
+    const property = new UrlProperty("url(#test)");
+
+    expect(property.toString()).toEqual("url(#test)");
+    expect(property.value).toBe(element);
   });
 
-  describe("property", () => {
-    beforeEach(() => {
-      const element = new AbstractElements(document.createElement("span"));
-      UrlProperty.define("id", element);
-    });
+  it("should return null if source value is null", () => {
+    expect(new UrlProperty(null).value).toBeNull();
+  });
 
-    it("should return element in value", () => {
-
-    });
+  it("should return null if wrong format", () => {
+    expect(new UrlProperty("wrong url format").value).toBeNull();
   });
 });

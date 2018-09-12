@@ -10,7 +10,7 @@ describe(ElementsFactoryStore, () => {
   });
 
   it("should keep the element", () => {
-    expect(store.add(ElementsFactory.create(new Image()))).toBeUndefined();
+    expect(store.add(ElementsFactory.create(document.createElement("svg")))).toBeUndefined();
   });
 
   describe("get element by id", () => {
@@ -34,7 +34,7 @@ describe(ElementsFactoryStore, () => {
     });
 
     it("should return undefined when element was not found", () => {
-      expect(store.get("test")).toBeUndefined();
+      expect(store.get("test")).toBeNull();
     });
   });
 });

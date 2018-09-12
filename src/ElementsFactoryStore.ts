@@ -8,7 +8,7 @@ export class ElementsFactoryStore {
     this._elements[id] = element;
   }
 
-  get(id: string): AbstractElements | undefined {
-    return this._elements[id];
+  get(id: string): AbstractElements | null {
+    return this._elements[id] || null;
   }
 }

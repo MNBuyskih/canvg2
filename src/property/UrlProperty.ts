@@ -1,15 +1,30 @@
 import {AbstractElements} from "elements/AbstractElements";
+import {ElementsFactory} from "ElementsFactory";
+import {Property} from "property/Property";
 
-export class UrlProperty {
-  private static _defines: { [id: string]: AbstractElements } = {};
+export class UrlProperty extends Property {
+  private _parsedValue: AbstractElements | null;
 
-  static define(id: string, element: AbstractElements) {
-    if (!UrlProperty._defines[id]) {
-      UrlProperty._defines[id] = element;
-    }
+  get value(): AbstractElements | null {
+    return this.parsedValue();
   }
 
-  static get(id: string): AbstractElements | null {
-    return UrlProperty._defines[id] || null;
+  private parsedValue() {
+    if (this._parsedValue !== undefined) {
+      return this._parsedValue;
+    }
+
+    if (
+      this._value === null ||
+      !/^url\(#.+?\)/.test(this._value.trim())
+    ) {
+      return this._parsedValue = null;
+    }
+
+    const url = this._value.trim()
+      .replace(/^url\(#/, "")
+      .replace(/\)$/, "");
+
+    return this._parsedValue = ElementsFactory.getStore().get(url);
   }
 }
