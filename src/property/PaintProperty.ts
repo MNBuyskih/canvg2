@@ -1,10 +1,11 @@
 import {AbstractElements} from "elements/AbstractElements";
 import {Property} from "property/Property";
 import {RGBA} from "property/RGBA";
+import {UrlProperty} from "property/UrlProperty";
 
 export type IPaintEnums = "none" | " context-fill" | "context-stroke";
 
-export type PaintValue = IPaintEnums | AbstractElements | RGBA | null;
+export type PaintValue = IPaintEnums | AbstractElements | RGBA | UrlProperty | null;
 
 /**
  * https://www.w3.org/TR/SVG/painting.html#SpecifyingPaint
@@ -30,7 +31,8 @@ export class PaintProperty extends Property {
     return this._parsedValue = this.enumValues(value) ||
       this.childValue(value) ||
       this.childNValue(value) ||
-      this.colorValue(value)
+      this.colorValue(value) ||
+      this.urlValue(value)
       ;
   }
 
@@ -64,5 +66,10 @@ export class PaintProperty extends Property {
     } catch (e) {
       return this._parsedValue = null;
     }
+  }
+
+  private urlValue(value: string): UrlProperty | null {
+    const url = new UrlProperty(value);
+    return url.value ? url : null;
   }
 }

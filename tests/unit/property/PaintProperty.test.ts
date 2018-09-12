@@ -1,8 +1,8 @@
 import {ElementsLine} from "src/elements";
-import {AbstractElements} from "src/elements/AbstractElements";
 import {ElementsFactory} from "src/ElementsFactory";
 import {PaintProperty} from "src/property/PaintProperty";
 import {RGBA} from "src/property/RGBA";
+import {UrlProperty} from "src/property/UrlProperty";
 import {xml} from "xml";
 
 describe(PaintProperty, () => {
@@ -34,8 +34,12 @@ describe(PaintProperty, () => {
       expect(new PaintProperty("#ffddee").value).toBeInstanceOf(RGBA);
     });
 
-    xit("for url should return link to element", () => {
-      expect(new PaintProperty("url(#ffddee)").value).toBeInstanceOf(AbstractElements);
+    it("for url should return link to element", () => {
+      const documentElement = xml(`<svg id="test"/>`).documentElement;
+      const element = ElementsFactory.create(documentElement);
+      const value = new PaintProperty("url(#test)").value;
+      expect(value).toBeInstanceOf(UrlProperty);
+      expect(value.value).toBe(element);
     });
   });
 });
