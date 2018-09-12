@@ -12,6 +12,10 @@ describe(ElementsFactory, () => {
   });
 
   describe("Should use only this for create elements", () => {
+    beforeEach(() => {
+      ElementsFactory.createStore();
+    });
+
     it("On create", () => {
       const create = spyOn(ElementsFactory, "create");
       new CanVG2(mockCanvas, xml(`<svg></svg>`));
@@ -22,9 +26,18 @@ describe(ElementsFactory, () => {
       new CanVG2(mockCanvas, xml(`<svg><line/><line/><line/></svg>`));
       expect(getChildren).toBeCalled();
     });
+    it("On getAttributes", () => {
+      const getAttributes = spyOn(ElementsFactory, "getAttributes").and.returnValue([{}, {}]);
+      new CanVG2(mockCanvas, xml(`<svg><line/><line/><line/></svg>`));
+      expect(getAttributes).toBeCalled();
+    });
   });
 
   describe("should create different elements according to nodeName", () => {
+    beforeEach(() => {
+      ElementsFactory.createStore();
+    });
+
     it("ElementsSVG for svg", () => {
       const element = ElementsFactory.create(document.createElement("svg"));
       expect(element).toBeInstanceOf(ElementsSvg);
@@ -44,6 +57,11 @@ describe(ElementsFactory, () => {
   });
 
   describe("should keep elements in store", () => {
+    it("should throw exception when no store", () => {
+      const svg = xml(`<svg></svg>`);
+      expect(() => ElementsFactory.create(svg.documentElement)).toThrow();
+    });
+
     it("should create new store every time it call", () => {
       const store = ElementsFactory.createStore();
       expect(store).toBeInstanceOf(ElementsFactoryStore);
@@ -54,12 +72,26 @@ describe(ElementsFactory, () => {
 
     it("should return the last created store", () => {
       const store = ElementsFactory.createStore();
-      const lastStore = ElementsFactory.lastStore();
+      const lastStore = ElementsFactory.getStore();
       expect(lastStore).toBe(store);
     });
 
     it("should throw exception when there are no created stores", () => {
-      expect(() => ElementsFactory.lastStore()).toThrow();
+      expect(() => ElementsFactory.getStore()).toThrow();
+    });
+
+    describe("store", () => {
+      beforeEach(() => {
+        ElementsFactory.createStore();
+      });
+
+      it("should return element from store", () => {
+        const svg = xml(`<svg id="test"></svg>`);
+        const htmlEl = svg.documentElement;
+        const newEl = ElementsFactory.create(htmlEl);
+
+        expect(ElementsFactory.getStore().get("test")).toBe(newEl);
+      });
     });
   });
 });

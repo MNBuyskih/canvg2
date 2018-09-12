@@ -1,15 +1,16 @@
-import {AbstractElements} from "src/elements/AbstractElements";
+import {ElementsFactory} from "src/ElementsFactory";
 import {ElementsFactoryStore} from "src/ElementsFactoryStore";
 
 describe(ElementsFactoryStore, () => {
   let store: ElementsFactoryStore;
 
   beforeEach(() => {
+    ElementsFactory.createStore();
     store = new ElementsFactoryStore();
   });
 
   it("should keep the element", () => {
-    expect(store.add(new AbstractElements(new Image()))).toBeUndefined();
+    expect(store.add(ElementsFactory.create(new Image()))).toBeUndefined();
   });
 
   describe("get element by id", () => {

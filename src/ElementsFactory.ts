@@ -1,10 +1,16 @@
+import {Attributes} from "Attributes";
 import {ElementsDummy, ElementsLine, ElementsSvg} from "elements";
 import {ElementsFactoryStore} from "ElementsFactoryStore";
+import {StyleAttributes} from "StyleAttributes";
 
 export class ElementsFactory {
-  private static store: ElementsFactoryStore;
+  private static store?: ElementsFactoryStore;
 
   static create(element: HTMLElement, root: boolean = false) {
+    if (!ElementsFactory.store) {
+      throw new Error("There are no created stores");
+    }
+
     let newElement: any;
     const nodeName = element.nodeName.toLowerCase();
 
@@ -22,8 +28,18 @@ export class ElementsFactory {
     }
 
     newElement.children = ElementsFactory.getChildren(element);
+    [newElement.stylesAttributes, newElement.attributes] = ElementsFactory.getAttributes(element);
     newElement.root = root;
+    ElementsFactory.store.add(newElement);
+
     return newElement;
+  }
+
+  static getAttributes(element: HTMLElement) {
+    let [styleAttr, attr] = Attributes.separateAttributes(Array.from(element.attributes));
+    let attributes = Attributes.create(attr);
+    let stylesAttributes = StyleAttributes.create(styleAttr);
+    return [stylesAttributes, attributes];
   }
 
   static getChildren(element: HTMLElement) {
@@ -35,7 +51,7 @@ export class ElementsFactory {
     return ElementsFactory.store = new ElementsFactoryStore();
   }
 
-  static lastStore() {
+  static getStore() {
     if (!ElementsFactory.store) {
       throw new Error("There are no created stores");
     }
