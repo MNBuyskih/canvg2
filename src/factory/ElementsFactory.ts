@@ -7,7 +7,7 @@ import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
 export class ElementsFactory {
   private static store?: ElementsFactoryStore;
 
-  static create(element: HTMLElement, root: boolean = false) {
+  static create(element: HTMLElement, root: boolean = false): AbstractElements {
     if (!ElementsFactory.store) {
       throw new Error("There are no created stores");
     }
