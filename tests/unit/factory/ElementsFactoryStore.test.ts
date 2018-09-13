@@ -17,8 +17,9 @@ describe(ElementsFactoryStore, () => {
     it("should return the element by element id", () => {
       const el = new Image();
       el.id = "test";
-      store.add(el);
-      expect(store.get("test")).toEqual(el);
+      const newEl = ElementsFactory.create(el);
+      store.add(newEl);
+      expect(store.get("test")).toEqual(newEl);
     });
 
     it("should return different elements by their own ids", () => {
@@ -26,11 +27,13 @@ describe(ElementsFactoryStore, () => {
       const el2 = new Image();
       el1.id = "test1";
       el2.id = "test2";
-      store.add(el1);
-      store.add(el2);
+      const newEl1 = ElementsFactory.create(el1);
+      const newEl2 = ElementsFactory.create(el2);
+      store.add(newEl1);
+      store.add(newEl2);
 
-      expect(store.get("test1")).toEqual(el1);
-      expect(store.get("test2")).toEqual(el2);
+      expect(store.get("test1")).toEqual(newEl1);
+      expect(store.get("test2")).toEqual(newEl2);
     });
 
     it("should return undefined when element was not found", () => {

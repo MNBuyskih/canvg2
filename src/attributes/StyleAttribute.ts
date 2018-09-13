@@ -7,7 +7,7 @@ export class StyleAttribute extends AttributeAbstract<IStyleAttributes> {
   protected getValue(value: string): Property {
     switch (this.name) {
       case "stroke":
-        return new PaintProperty(value);
+        return new PaintProperty(value, this.element);
       default :
         return new Property(value);
     }

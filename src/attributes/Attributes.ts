@@ -1,17 +1,18 @@
 import {Attribute} from "src/attributes/Attribute";
+import {AbstractElements} from "src/elements/AbstractElements";
 import {IAttributes} from "src/types/IAttributes";
 import {styleAttributes} from "src/types/styleAttributes";
 
 export class Attributes {
   private attributes: { [key: string]: Attribute } = {};
 
-  constructor(attributes: Attr[]) {
+  constructor(attributes: Attr[], protected element: AbstractElements) {
     this.fillAttributes(attributes);
   }
 
-  static create(attributes: Attr[]): Record<keyof IAttributes, Attribute | undefined> {
+  static create(attributes: Attr[], element: AbstractElements): Record<keyof IAttributes, Attribute | undefined> {
     // @ts-ignore
-    const attrs = new Attributes(attributes) as IAttributes;
+    const attrs = new Attributes(attributes, element) as IAttributes;
 
     // @ts-ignore
     return new Proxy(attrs, {
@@ -29,7 +30,7 @@ export class Attributes {
     this.attributes = attributes
       .reduce((memo, attribute) => {
         const {name, value} = attribute;
-        memo[name] = new Attribute(name as keyof IAttributes, value);
+        memo[name] = new Attribute(name as keyof IAttributes, value, this.element);
         return memo;
       }, this.attributes);
   }

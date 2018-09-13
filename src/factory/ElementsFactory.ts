@@ -1,6 +1,7 @@
 import {Attributes} from "src/attributes/Attributes";
 import {StyleAttributes} from "src/attributes/StyleAttributes";
 import {ElementsDummy, ElementsLine, ElementsSvg} from "src/elements";
+import {AbstractElements} from "src/elements/AbstractElements";
 import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
 
 export class ElementsFactory {
@@ -28,21 +29,21 @@ export class ElementsFactory {
     }
 
     newElement.children = ElementsFactory.getChildren(element);
-    [newElement.stylesAttributes, newElement.attributes] = ElementsFactory.getAttributes(element);
+    [newElement.stylesAttributes, newElement.attributes] = ElementsFactory.getAttributes(element, newElement);
     newElement.root = root;
     ElementsFactory.store.add(newElement);
 
     return newElement;
   }
 
-  static getAttributes(element: HTMLElement) {
+  private static getAttributes(element: HTMLElement, newElement: AbstractElements) {
     let [styleAttr, attr] = Attributes.separateAttributes(Array.from(element.attributes));
-    let attributes = Attributes.create(attr);
-    let stylesAttributes = StyleAttributes.create(styleAttr);
+    let attributes = Attributes.create(attr, newElement);
+    let stylesAttributes = StyleAttributes.create(styleAttr, newElement);
     return [stylesAttributes, attributes];
   }
 
-  static getChildren(element: HTMLElement) {
+  private static getChildren(element: HTMLElement) {
     return Array.from(element.children)
       .map(child => ElementsFactory.create(child as HTMLElement));
   }

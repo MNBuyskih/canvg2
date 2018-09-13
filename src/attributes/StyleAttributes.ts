@@ -1,10 +1,11 @@
 import {StyleAttribute} from "src/attributes/StyleAttribute";
+import {AbstractElements} from "src/elements/AbstractElements";
 import {IStyleAttributes} from "src/types/IStyleAttributes";
 
 export class StyleAttributes {
   private attributes: { [key: string]: StyleAttribute } = {};
 
-  constructor(attributes: Attr[]) {
+  constructor(attributes: Attr[], private element: AbstractElements) {
     this.fillAttributes(attributes);
   }
 
@@ -12,14 +13,14 @@ export class StyleAttributes {
     this.attributes = attributes
       .reduce((memo, attribute) => {
         const {name, value} = attribute;
-        memo[name] = new StyleAttribute(name as keyof IStyleAttributes, value);
+        memo[name] = new StyleAttribute(name as keyof IStyleAttributes, value, this.element);
         return memo;
       }, this.attributes);
   }
 
-  static create(attributes: Attr[]): Record<keyof IStyleAttributes, StyleAttribute | undefined> {
+  static create(attributes: Attr[], element: AbstractElements): Record<keyof IStyleAttributes, StyleAttribute | undefined> {
     // @ts-ignore
-    const attrs = new StyleAttributes(attributes) as IStyleAttributes;
+    const attrs = new StyleAttributes(attributes, element) as IStyleAttributes;
 
     // @ts-ignore
     return new Proxy(attrs, {
