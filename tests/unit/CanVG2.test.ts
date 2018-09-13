@@ -1,4 +1,4 @@
-import {mockCanvas} from "tests/MockCanvas";
+import {mockedCanvas} from "tests/mockedCanvas";
 import {CanVG2} from "src/CanVG2";
 import {ElementsFactory} from "src/factory/ElementsFactory";
 import {xml} from "tests/xml";
@@ -13,7 +13,7 @@ describe(CanVG2, () => {
 
   describe("elements", () => {
     beforeEach(() => {
-      cvg = new CanVG2(mockCanvas, doc);
+      cvg = new CanVG2(mockedCanvas, doc);
     });
 
     it("Root element should be marked as root", () => {
@@ -25,11 +25,11 @@ describe(CanVG2, () => {
     let getContext: jasmine.Spy;
     let context = {};
     beforeEach(() => {
-      getContext = spyOn(mockCanvas, "getContext").and.returnValue(context);
+      getContext = spyOn(mockedCanvas, "getContext").and.returnValue(context);
     });
 
     it("should get context", () => {
-      cvg = new CanVG2(mockCanvas, doc);
+      cvg = new CanVG2(mockedCanvas, doc);
       expect(getContext).toBeCalledWith("2d");
       expect(cvg.context).toEqual(context);
     });
@@ -39,10 +39,10 @@ describe(CanVG2, () => {
 
   describe("wrong context", () => {
     let getContext: jasmine.Spy;
-    beforeEach(() => getContext = spyOn(mockCanvas, "getContext").and.returnValue(null));
+    beforeEach(() => getContext = spyOn(mockedCanvas, "getContext").and.returnValue(null));
 
     it("should get exception", () => {
-      expect(() => new CanVG2(mockCanvas, doc)).toThrow();
+      expect(() => new CanVG2(mockedCanvas, doc)).toThrow();
     });
 
     afterEach(() => getContext.and.stub());

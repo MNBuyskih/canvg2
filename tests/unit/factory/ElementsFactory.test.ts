@@ -3,7 +3,7 @@ import {ElementsDummy, ElementsSvg} from "src/elements";
 import {ElementsLine} from "src/elements/ElementsLine";
 import {ElementsFactory} from "src/factory/ElementsFactory";
 import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
-import {mockCanvas} from "tests/MockCanvas";
+import {mockedCanvas} from "tests/mockedCanvas";
 import {xml} from "tests/xml";
 
 describe(ElementsFactory, () => {
@@ -18,17 +18,17 @@ describe(ElementsFactory, () => {
 
     it("On create", () => {
       const create = spyOn(ElementsFactory, "create");
-      new CanVG2(mockCanvas, xml(`<svg></svg>`));
+      new CanVG2(mockedCanvas, xml(`<svg></svg>`));
       expect(create).toBeCalled();
     });
     it("On getChildren", () => {
       const getChildren = spyOn(ElementsFactory, "getChildren");
-      new CanVG2(mockCanvas, xml(`<svg><line/><line/><line/></svg>`));
+      new CanVG2(mockedCanvas, xml(`<svg><line/><line/><line/></svg>`));
       expect(getChildren).toBeCalled();
     });
     it("On getAttributes", () => {
       const getAttributes = spyOn(ElementsFactory, "getAttributes").and.returnValue([{}, {}]);
-      new CanVG2(mockCanvas, xml(`<svg><line/><line/><line/></svg>`));
+      new CanVG2(mockedCanvas, xml(`<svg><line/><line/><line/></svg>`));
       expect(getAttributes).toBeCalled();
     });
   });

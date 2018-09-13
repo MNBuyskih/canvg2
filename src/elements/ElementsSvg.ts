@@ -1,7 +1,8 @@
+import {CanVG2} from "src/CanVG2";
 import {AbstractElements} from "src/elements/AbstractElements";
 
 export class ElementsSvg extends AbstractElements {
-  render(context: CanvasRenderingContext2D): void {
-    this.children.forEach(c => c.render(context));
+  render(canvg: CanVG2): void {
+    this.children.forEach(c => c.render(canvg));
   }
 }
