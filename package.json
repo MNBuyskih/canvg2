@@ -16,6 +16,7 @@
     "@types/node": "^10.9.4",
     "canvas": "^1.6.12",
     "jest": "^23.5.0",
+    "jest-canvas-mock": "^1.1.0",
     "rollup": "^0.65.2",
     "rollup-plugin-livereload": "^0.6.0",
     "rollup-plugin-serve": "^0.4.2",

@@ -15,7 +15,7 @@ describe(ElementsFactoryStore, () => {
 
   describe("get element by id", () => {
     it("should return the element by element id", () => {
-      const el = new Image();
+      const el = document.createElement('svg');
       el.id = "test";
       const newEl = ElementsFactory.create(el);
       store.add(newEl);
@@ -23,8 +23,8 @@ describe(ElementsFactoryStore, () => {
     });
 
     it("should return different elements by their own ids", () => {
-      const el1 = new Image();
-      const el2 = new Image();
+      const el1 = document.createElement('svg');
+      const el2 = document.createElement('svg');
       el1.id = "test1";
       el2.id = "test2";
       const newEl1 = ElementsFactory.create(el1);

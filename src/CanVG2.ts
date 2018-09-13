@@ -22,6 +22,6 @@ export class CanVG2 {
   }
 
   draw() {
-    // this.rootElement.render(this.context);
+    this.rootElement.render(this.context);
   }
 }

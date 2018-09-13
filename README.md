@@ -10,9 +10,11 @@
 # Add new attribute
 
 1. Describe attribute in `src/types/IAttribute.ts`
+1. Add test case in `tests/unit/attributes/Attribute.test.ts`
 1. Add case in `src/Attribute.ts` if your attribute should have special value
     - For list of numbers use `ListOfNumbersProperty`
     - For number - `NumberProperty`
     - For color - `ColorProperty`
+    - For url - `UrlProperty`
     - For [paint](https://developer.mozilla.org/en-US/docs/Web/SVG/Content_type#Paint) - `PaintProperty`
     - For string (default) - `Property`
