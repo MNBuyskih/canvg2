@@ -1,12 +1,8 @@
-import {AbstractElements} from "src/elements/AbstractElements";
-
 export class Property {
-  protected element?: AbstractElements;
   protected _value: string | null;
 
-  constructor(value: string | null, element?: AbstractElements) {
+  constructor(value: string | null) {
     this._value = value;
-    this.element = element;
   }
 
   get value(): any {

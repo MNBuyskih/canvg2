@@ -1,10 +1,9 @@
 import {Attribute} from "src/attributes/Attribute";
 import {Attributes} from "src/attributes/Attributes";
+import {StyleAttributes} from "src/attributes/StyleAttributes";
 import {AbstractElements} from "src/elements/AbstractElements";
 import {ElementsFactory} from "src/factory/ElementsFactory";
-import {ColorProperty} from "src/property/ColorProperty";
-import {Property} from "src/property/Property";
-import {StyleAttributes} from "src/attributes/StyleAttributes";
+import {PaintProperty} from "src/property/PaintProperty";
 import {xml} from "xml";
 
 describe(AbstractElements, () => {
@@ -37,9 +36,9 @@ describe(AbstractElements, () => {
       it("should keep styles attributes", () => {
         const svg = xml("<svg stroke=\"black\"></svg>");
         const element = ElementsFactory.create(svg.documentElement);
-        const stroke: Attribute<Property> = element.stylesAttributes.stroke;
+        const stroke: Attribute = element.stylesAttributes.stroke;
         expect(element.stylesAttributes).toBeInstanceOf(StyleAttributes);
-        expect(stroke.value).toBeInstanceOf(ColorProperty);
+        expect(stroke.value).toBeInstanceOf(PaintProperty);
       });
     });
   });

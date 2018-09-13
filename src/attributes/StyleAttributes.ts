@@ -1,9 +1,8 @@
-import {Attribute} from "src/attributes/Attribute";
-import {IAttributes} from "src/types/IAttributes";
+import {StyleAttribute} from "src/attributes/StyleAttribute";
 import {IStyleAttributes} from "src/types/IStyleAttributes";
 
 export class StyleAttributes {
-  private attributes: { [key: string]: Attribute } = {};
+  private attributes: { [key: string]: StyleAttribute } = {};
 
   constructor(attributes: Attr[]) {
     this.fillAttributes(attributes);
@@ -13,12 +12,12 @@ export class StyleAttributes {
     this.attributes = attributes
       .reduce((memo, attribute) => {
         const {name, value} = attribute;
-        memo[name] = new Attribute(name as keyof IAttributes, value);
+        memo[name] = new StyleAttribute(name as keyof IStyleAttributes, value);
         return memo;
       }, this.attributes);
   }
 
-  static create(attributes: Attr[]): Record<keyof IStyleAttributes, Attribute | undefined> {
+  static create(attributes: Attr[]): Record<keyof IStyleAttributes, StyleAttribute | undefined> {
     // @ts-ignore
     const attrs = new StyleAttributes(attributes) as IStyleAttributes;
 
@@ -30,7 +29,7 @@ export class StyleAttributes {
     });
   }
 
-  get(name: keyof IStyleAttributes): Attribute {
+  get(name: keyof IStyleAttributes): StyleAttribute {
     return this.attributes[name];
   }
 }
