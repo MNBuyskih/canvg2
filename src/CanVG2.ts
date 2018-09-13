@@ -5,9 +5,9 @@ export class CanVG2 {
   rootElement: AbstractElements;
   context: CanvasRenderingContext2D;
   private canvas: HTMLCanvasElement;
-  private source: XMLDocument;
+  private source: HTMLElement;
 
-  constructor(canvas: HTMLCanvasElement, svg: XMLDocument) {
+  constructor(canvas: HTMLCanvasElement, svg: HTMLElement) {
     this.canvas = canvas;
     const context = this.canvas.getContext("2d");
     if (!context) {
@@ -18,7 +18,7 @@ export class CanVG2 {
     this.source = svg;
 
     ElementsFactory.createStore();
-    this.rootElement = ElementsFactory.create(this.source.documentElement, true);
+    this.rootElement = ElementsFactory.create(this.source, true);
   }
 
   draw() {

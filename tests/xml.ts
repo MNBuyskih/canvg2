@@ -1,3 +1,3 @@
-export function xml(source: string): Document {
-  return new DOMParser().parseFromString(source, "text/xml");
+export function xml(source: string): HTMLElement {
+  return new DOMParser().parseFromString(source, "text/xml").documentElement;
 }

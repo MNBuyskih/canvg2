@@ -1,14 +1,14 @@
-import {mockCanvas} from "MockCanvas";
 import {CanVG2} from "src/CanVG2";
 import {ElementsDummy, ElementsSvg} from "src/elements";
 import {ElementsLine} from "src/elements/ElementsLine";
 import {ElementsFactory} from "src/factory/ElementsFactory";
 import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
-import {xml} from "xml";
+import {mockCanvas} from "tests/MockCanvas";
+import {xml} from "tests/xml";
 
 describe(ElementsFactory, () => {
   beforeEach(() => {
-    ElementsFactory.store = null;
+    ElementsFactory.store = undefined;
   });
 
   describe("Should use only this for create elements", () => {
@@ -59,7 +59,7 @@ describe(ElementsFactory, () => {
   describe("should keep elements in store", () => {
     it("should throw exception when no store", () => {
       const svg = xml(`<svg></svg>`);
-      expect(() => ElementsFactory.create(svg.documentElement)).toThrow();
+      expect(() => ElementsFactory.create(svg)).toThrow();
     });
 
     it("should create new store every time it call", () => {
@@ -86,8 +86,7 @@ describe(ElementsFactory, () => {
       });
 
       it("should return element from store", () => {
-        const svg = xml(`<svg id="test"></svg>`);
-        const htmlEl = svg.documentElement;
+        const htmlEl = xml(`<svg id="test"></svg>`);
         const newEl = ElementsFactory.create(htmlEl);
 
         expect(ElementsFactory.getStore().get("test")).toBe(newEl);

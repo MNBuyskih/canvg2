@@ -3,7 +3,7 @@ import {ElementsFactory} from "src/factory/ElementsFactory";
 import {PaintProperty} from "src/property/PaintProperty";
 import {RGBA} from "src/property/RGBA";
 import {UrlProperty} from "src/property/UrlProperty";
-import {xml} from "xml";
+import {xml} from "tests/xml";
 
 describe(PaintProperty, () => {
   beforeEach(() => {
@@ -20,11 +20,11 @@ describe(PaintProperty, () => {
     it("for child should return link to child element", () => {
       expect(new PaintProperty("child").value).toBeNull();
 
-      let documentElement = xml(`<svg><line/></svg>`).documentElement;
+      let documentElement = xml(`<svg><line/></svg>`);
       let element = ElementsFactory.create(documentElement);
       expect(new PaintProperty("child", element).value).toBeInstanceOf(ElementsLine);
 
-      documentElement = xml(`<svg><line/><line/></svg>`).documentElement;
+      documentElement = xml(`<svg><line/><line/></svg>`);
       element = ElementsFactory.create(documentElement);
       expect(new PaintProperty("child(2)", element).value).toBeInstanceOf(ElementsLine);
     });
@@ -35,11 +35,11 @@ describe(PaintProperty, () => {
     });
 
     it("for url should return link to element", () => {
-      const documentElement = xml(`<svg id="test"/>`).documentElement;
+      const documentElement = xml(`<svg id="test"/>`);
       const element = ElementsFactory.create(documentElement);
-      const value = new PaintProperty("url(#test)").value;
-      expect(value).toBeInstanceOf(UrlProperty);
-      expect(value.value).toBe(element);
+      const propertyValue = new PaintProperty("url(#test)").value;
+      expect(propertyValue).toBeInstanceOf(UrlProperty);
+      expect((propertyValue as UrlProperty).value).toBe(element);
     });
   });
 });

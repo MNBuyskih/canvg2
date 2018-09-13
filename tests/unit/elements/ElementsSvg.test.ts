@@ -7,7 +7,7 @@ describe(ElementsSvg, () => {
   describe("render", () => {
     it("should render all children", () => {
       ElementsFactory.createStore();
-      const el = ElementsFactory.create(xml(`<svg><line/></svg>`).documentElement);
+      const el = ElementsFactory.create(xml(`<svg><line/></svg>`));
       const child = el.children[0];
       spyOn(child, "render");
       el.render(mockedContext);

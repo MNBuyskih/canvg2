@@ -5,7 +5,7 @@ import {AbstractElements} from "src/elements/AbstractElements";
 import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
 
 export class ElementsFactory {
-  private static store?: ElementsFactoryStore;
+  static store?: ElementsFactoryStore;
 
   static create(element: HTMLElement, root: boolean = false): AbstractElements {
     if (!ElementsFactory.store) {
@@ -36,14 +36,14 @@ export class ElementsFactory {
     return newElement;
   }
 
-  private static getAttributes(element: HTMLElement, newElement: AbstractElements) {
+  static getAttributes(element: HTMLElement, newElement: AbstractElements) {
     let [styleAttr, attr] = Attributes.separateAttributes(Array.from(element.attributes));
     let attributes = Attributes.create(attr, newElement);
     let stylesAttributes = StyleAttributes.create(styleAttr, newElement);
     return [stylesAttributes, attributes];
   }
 
-  private static getChildren(element: HTMLElement) {
+  static getChildren(element: HTMLElement) {
     return Array.from(element.children)
       .map(child => ElementsFactory.create(child as HTMLElement));
   }

@@ -16,6 +16,7 @@ export class NumberProperty extends Property {
   private _parsedValue: number;
 
   constructor(value: string)
+  constructor(value: null)
   constructor(value: number, units: Unit)
   constructor(value: string | number | null, units?: Unit) {
     super(value as string);

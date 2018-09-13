@@ -43,7 +43,7 @@ function showExample(a) {
     complete: (e) => {
       const parser = new DOMParser();
       const xml = parser.parseFromString(e.responseText, 'text/xml');
-      const canvg = new CanVG2($('#canvas').get(0), xml);
+      const canvg = new CanVG2($('#canvas').get(0), xml.childNodes[0]);
       canvg.draw();
     }
   });

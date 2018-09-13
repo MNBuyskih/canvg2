@@ -10,7 +10,7 @@ describe(ElementsLine, () => {
     beforeEach(() => {
       context = mockedContext;
       ElementsFactory.createStore();
-      el = ElementsFactory.create(xml(`<line x1="0" y1="80" x2="100" y2="20" stroke="black"/>`).documentElement);
+      el = ElementsFactory.create(xml(`<line x1="0" y1="80" x2="100" y2="20" stroke="black"/>`));
     });
 
     it("should use beginPath, moveTo, lineTo", () => {
