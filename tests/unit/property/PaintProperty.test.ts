@@ -6,10 +6,6 @@ import {UrlProperty} from "src/property/UrlProperty";
 import {xml} from "tests/xml";
 
 describe(PaintProperty, () => {
-  beforeEach(() => {
-    ElementsFactory.createStore();
-  });
-
   describe("should represent different property on getting value", () => {
     it("for enums", () => {
       ["none", "context-fill", "context-stroke"].forEach(c => {

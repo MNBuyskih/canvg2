@@ -5,13 +5,7 @@ import {AbstractElements} from "src/elements/AbstractElements";
 import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
 
 export class ElementsFactory {
-  static store?: ElementsFactoryStore;
-
   static create(element: HTMLElement, root: boolean = false): AbstractElements {
-    if (!ElementsFactory.store) {
-      throw new Error("There are no created stores");
-    }
-
     let newElement: any;
     const nodeName = element.nodeName.toLowerCase();
 
@@ -31,7 +25,7 @@ export class ElementsFactory {
     newElement.children = ElementsFactory.getChildren(element);
     [newElement.stylesAttributes, newElement.attributes] = ElementsFactory.getAttributes(element, newElement);
     newElement.root = root;
-    ElementsFactory.store.add(newElement);
+    ElementsFactoryStore.add(newElement);
 
     return newElement;
   }
@@ -46,16 +40,5 @@ export class ElementsFactory {
   static getChildren(element: HTMLElement) {
     return Array.from(element.children)
       .map(child => ElementsFactory.create(child as HTMLElement));
-  }
-
-  static createStore() {
-    return ElementsFactory.store = new ElementsFactoryStore();
-  }
-
-  static getStore() {
-    if (!ElementsFactory.store) {
-      throw new Error("There are no created stores");
-    }
-    return ElementsFactory.store;
   }
 }

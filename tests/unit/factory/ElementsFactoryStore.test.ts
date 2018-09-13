@@ -1,30 +1,30 @@
 import {ElementsFactory} from "src/factory/ElementsFactory";
 import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
+import {xml} from "tests/xml";
 
 describe(ElementsFactoryStore, () => {
-  let store: ElementsFactoryStore;
-
-  beforeEach(() => {
-    ElementsFactory.createStore();
-    store = new ElementsFactoryStore();
-  });
+  const store = ElementsFactoryStore;
 
   it("should keep the element", () => {
-    expect(store.add(ElementsFactory.create(document.createElement("svg")))).toBeUndefined();
+    expect(store.add(ElementsFactory.create(xml()))).toBeUndefined();
+  });
+
+  it("should clean the store", () => {
+    expect(store.clean()).toBeUndefined();
   });
 
   describe("get element by id", () => {
+    beforeEach(store.clean);
+
     it("should return the element by element id", () => {
-      const el = document.createElement('svg');
-      el.id = "test";
-      const newEl = ElementsFactory.create(el);
+      const newEl = ElementsFactory.create(xml(`<svg id="test"/>`));
       store.add(newEl);
       expect(store.get("test")).toEqual(newEl);
     });
 
     it("should return different elements by their own ids", () => {
-      const el1 = document.createElement('svg');
-      const el2 = document.createElement('svg');
+      const el1 = document.createElement("svg");
+      const el2 = document.createElement("svg");
       el1.id = "test1";
       el2.id = "test2";
       const newEl1 = ElementsFactory.create(el1);

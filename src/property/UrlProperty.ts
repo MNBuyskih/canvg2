@@ -1,5 +1,5 @@
 import {AbstractElements} from "src/elements/AbstractElements";
-import {ElementsFactory} from "src/factory/ElementsFactory";
+import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
 import {Property} from "src/property/Property";
 
 export class UrlProperty extends Property {
@@ -25,6 +25,6 @@ export class UrlProperty extends Property {
       .replace(/^url\(#/, "")
       .replace(/\)$/, "");
 
-    return this._parsedValue = ElementsFactory.getStore().get(url);
+    return this._parsedValue = ElementsFactoryStore.get(url);
   }
 }

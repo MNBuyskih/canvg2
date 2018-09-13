@@ -3,8 +3,6 @@ import {UrlProperty} from "src/property/UrlProperty";
 import {xml} from "tests/xml";
 
 describe(UrlProperty, () => {
-  beforeEach(() => ElementsFactory.createStore());
-
   it("should return element in value", () => {
     const svg = xml(`<svg id="test"></svg>`);
     const element = ElementsFactory.create(svg);

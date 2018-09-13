@@ -17,7 +17,6 @@ export class CanVG2 {
     this.context = context;
     this.source = svg;
 
-    ElementsFactory.createStore();
     this.rootElement = ElementsFactory.create(this.source, true);
   }
 

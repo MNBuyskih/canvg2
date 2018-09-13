@@ -1,15 +1,11 @@
-import {mockedCanvas} from "tests/mockedCanvas";
 import {CanVG2} from "src/CanVG2";
 import {ElementsFactory} from "src/factory/ElementsFactory";
+import {mockedCanvas} from "tests/mockedCanvas";
 import {xml} from "tests/xml";
 
 describe(CanVG2, () => {
   const doc = xml("<svg></svg>");
   let cvg: CanVG2;
-
-  beforeEach(() => {
-    ElementsFactory.createStore();
-  });
 
   describe("elements", () => {
     beforeEach(() => {

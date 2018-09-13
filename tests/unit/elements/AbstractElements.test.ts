@@ -7,10 +7,6 @@ import {PaintProperty} from "src/property/PaintProperty";
 import {xml} from "tests/xml";
 
 describe(AbstractElements, () => {
-  beforeEach(() => {
-    ElementsFactory.createStore();
-  });
-
   describe("attributes", () => {
     it("should be Attributes instance", () => {
       const svg = xml("<svg></svg>");
