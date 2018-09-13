@@ -1,11 +1,8 @@
-import {Attribute} from "Attribute";
-import {Attributes} from "Attributes";
-import {StyleAttributes} from "StyleAttributes";
-import {IAttributes} from "types/IAttributes";
-import {IStyleAttributes} from "types/IStyleAttributes";
+import {Attribute} from "src/attributes/Attribute";
+import {IAttributes} from "src/types/IAttributes";
+import {IStyleAttributes} from "src/types/IStyleAttributes";
 
 export class AbstractElements {
-  // static create: (element: HTMLElement) => (ElementsSvg | ElementsDummy);
   root: boolean = false;
   attributes: Record<keyof IAttributes, Attribute | undefined>;
   stylesAttributes: Record<keyof IStyleAttributes, Attribute | undefined>;

@@ -1,10 +1,10 @@
-import {Attribute} from "src/Attribute";
-import {Attributes} from "src/Attributes";
+import {Attribute} from "src/attributes/Attribute";
+import {Attributes} from "src/attributes/Attributes";
 import {AbstractElements} from "src/elements/AbstractElements";
-import {ElementsFactory} from "src/ElementsFactory";
+import {ElementsFactory} from "src/factory/ElementsFactory";
 import {ColorProperty} from "src/property/ColorProperty";
 import {Property} from "src/property/Property";
-import {StyleAttributes} from "src/StyleAttributes";
+import {StyleAttributes} from "src/attributes/StyleAttributes";
 import {xml} from "xml";
 
 describe(AbstractElements, () => {

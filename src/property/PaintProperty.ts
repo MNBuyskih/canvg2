@@ -1,7 +1,7 @@
-import {AbstractElements} from "elements/AbstractElements";
-import {Property} from "property/Property";
-import {RGBA} from "property/RGBA";
-import {UrlProperty} from "property/UrlProperty";
+import {AbstractElements} from "src/elements/AbstractElements";
+import {Property} from "src/property/Property";
+import {RGBA} from "src/property/RGBA";
+import {UrlProperty} from "src/property/UrlProperty";
 
 export type IPaintEnums = "none" | " context-fill" | "context-stroke";
 

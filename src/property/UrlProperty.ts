@@ -1,6 +1,6 @@
-import {AbstractElements} from "elements/AbstractElements";
-import {ElementsFactory} from "ElementsFactory";
-import {Property} from "property/Property";
+import {AbstractElements} from "src/elements/AbstractElements";
+import {ElementsFactory} from "src/factory/ElementsFactory";
+import {Property} from "src/property/Property";
 
 export class UrlProperty extends Property {
   private _parsedValue: AbstractElements | null;

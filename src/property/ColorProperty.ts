@@ -1,5 +1,5 @@
-import {Property} from "property/Property";
-import {RGBA} from "property/RGBA";
+import {Property} from "src/property/Property";
+import {RGBA} from "src/property/RGBA";
 
 export class ColorProperty extends Property {
   private _parsedValue: RGBA;

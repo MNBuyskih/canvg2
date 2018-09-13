@@ -1,4 +1,4 @@
-import {Attribute} from "src/Attribute";
+import {Attribute} from "src/attributes/Attribute";
 import {ListOfNumbersProperty} from "src/property/ListOfNumbersProperty";
 import {Property} from "src/property/Property";
 

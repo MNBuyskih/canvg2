@@ -1,8 +1,8 @@
-import {Attribute} from "src/Attribute";
-import {Attributes} from "src/Attributes";
+import {Attribute} from "src/attributes/Attribute";
+import {Attributes} from "src/attributes/Attributes";
 import {Property} from "src/property/Property";
 import {IAttributes} from "src/types/IAttributes";
-import {xml} from "../xml";
+import {xml} from "xml";
 
 describe(Attributes, () => {
   describe("attributes", () => {

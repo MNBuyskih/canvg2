@@ -1,5 +1,5 @@
-import {ElementsFactory} from "src/ElementsFactory";
-import {ElementsFactoryStore} from "src/ElementsFactoryStore";
+import {ElementsFactory} from "src/factory/ElementsFactory";
+import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
 
 describe(ElementsFactoryStore, () => {
   let store: ElementsFactoryStore;

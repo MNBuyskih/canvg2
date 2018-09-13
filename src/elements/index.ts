@@ -1,3 +1,3 @@
-export {ElementsDummy} from "./ElementsDummy";
-export {ElementsSvg} from "./ElementsSvg";
-export {ElementsLine} from "./ElementsLine";
+export {ElementsDummy} from "src/elements/ElementsDummy";
+export {ElementsSvg} from "src/elements/ElementsSvg";
+export {ElementsLine} from "src/elements/ElementsLine";

@@ -1,7 +1,7 @@
-import {Attributes} from "Attributes";
-import {ElementsDummy, ElementsLine, ElementsSvg} from "elements";
-import {ElementsFactoryStore} from "ElementsFactoryStore";
-import {StyleAttributes} from "StyleAttributes";
+import {Attributes} from "src/attributes/Attributes";
+import {StyleAttributes} from "src/attributes/StyleAttributes";
+import {ElementsDummy, ElementsLine, ElementsSvg} from "src/elements";
+import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
 
 export class ElementsFactory {
   private static store?: ElementsFactoryStore;

@@ -2,8 +2,8 @@ import {mockCanvas} from "MockCanvas";
 import {CanVG2} from "src/CanVG2";
 import {ElementsDummy, ElementsSvg} from "src/elements";
 import {ElementsLine} from "src/elements/ElementsLine";
-import {ElementsFactory} from "src/ElementsFactory";
-import {ElementsFactoryStore} from "src/ElementsFactoryStore";
+import {ElementsFactory} from "src/factory/ElementsFactory";
+import {ElementsFactoryStore} from "src/factory/ElementsFactoryStore";
 import {xml} from "xml";
 
 describe(ElementsFactory, () => {

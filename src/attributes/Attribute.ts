@@ -1,8 +1,8 @@
-import {AbstractElements} from "elements/AbstractElements";
-import {ColorProperty} from "property/ColorProperty";
-import {ListOfNumbersProperty} from "property/ListOfNumbersProperty";
-import {Property} from "property/Property";
-import {IAttributes} from "types/IAttributes";
+import {AbstractElements} from "src/elements/AbstractElements";
+import {ColorProperty} from "src/property/ColorProperty";
+import {ListOfNumbersProperty} from "src/property/ListOfNumbersProperty";
+import {Property} from "src/property/Property";
+import {IAttributes} from "src/types/IAttributes";
 
 export class Attribute {
   name: string;

@@ -1,6 +1,6 @@
-import {Attribute} from "Attribute";
-import {IAttributes} from "types/IAttributes";
-import {styleAttributes} from "types/styleAttributes";
+import {Attribute} from "src/attributes/Attribute";
+import {IAttributes} from "src/types/IAttributes";
+import {styleAttributes} from "src/types/styleAttributes";
 
 export class Attributes {
   private attributes: { [key: string]: Attribute } = {};

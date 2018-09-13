@@ -1,7 +1,7 @@
+import {mockCanvas} from "tests/MockCanvas";
 import {CanVG2} from "src/CanVG2";
-import {mockCanvas} from "MockCanvas";
-import {ElementsFactory} from "src/ElementsFactory";
-import {xml} from "xml";
+import {ElementsFactory} from "src/factory/ElementsFactory";
+import {xml} from "tests/xml";
 
 describe(CanVG2, () => {
   const doc = xml("<svg></svg>");

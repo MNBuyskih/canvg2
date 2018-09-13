@@ -1,5 +1,5 @@
 import {ElementsLine} from "src/elements";
-import {ElementsFactory} from "src/ElementsFactory";
+import {ElementsFactory} from "src/factory/ElementsFactory";
 import {PaintProperty} from "src/property/PaintProperty";
 import {RGBA} from "src/property/RGBA";
 import {UrlProperty} from "src/property/UrlProperty";

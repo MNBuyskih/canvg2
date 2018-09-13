@@ -1,4 +1,4 @@
-import {Property} from "property/Property";
+import {Property} from "src/property/Property";
 
 export class ListOfNumbersProperty extends Property {
   get value(): number[] {

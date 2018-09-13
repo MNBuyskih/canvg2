@@ -1,4 +1,4 @@
-import {Property} from "property/Property";
+import {Property} from "src/property/Property";
 
 export type Unit = "px" | "pt" | "pc" | "cm" | "mm" | "in" | "%";
 

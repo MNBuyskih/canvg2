@@ -1,4 +1,4 @@
-import {ElementsFactory} from "src/ElementsFactory";
+import {ElementsFactory} from "src/factory/ElementsFactory";
 import {UrlProperty} from "src/property/UrlProperty";
 import {xml} from "xml";
 

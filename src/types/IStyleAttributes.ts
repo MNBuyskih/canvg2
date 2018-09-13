@@ -1,6 +1,6 @@
-import {ColorProperty} from "property/ColorProperty";
-import {NumberProperty} from "property/NumberProperty";
-import {Property} from "property/Property";
+import {ColorProperty} from "src/property/ColorProperty";
+import {NumberProperty} from "src/property/NumberProperty";
+import {Property} from "src/property/Property";
 
 export interface IStyleAttributes {
   alignmentBaseline: Property;

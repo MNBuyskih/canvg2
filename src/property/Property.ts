@@ -1,4 +1,4 @@
-import {AbstractElements} from "elements/AbstractElements";
+import {AbstractElements} from "src/elements/AbstractElements";
 
 export class Property {
   protected element?: AbstractElements;
