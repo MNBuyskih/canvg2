@@ -33,7 +33,7 @@ export class ElementsFactory {
   static getAttributes(element: HTMLElement, newElement: AbstractElements) {
     let [styleAttr, attr] = Attributes.separateAttributes(Array.from(element.attributes));
     let attributes = Attributes.create(attr, newElement);
-    let stylesAttributes = StyleAttributes.create(styleAttr, newElement);
+    let stylesAttributes = new StyleAttributes(styleAttr);
     return [stylesAttributes, attributes];
   }
 

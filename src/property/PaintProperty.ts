@@ -2,6 +2,7 @@ import {AbstractElements} from "src/elements/AbstractElements";
 import {Property} from "src/property/Property";
 import {RGBA} from "src/property/RGBA";
 import {UrlProperty} from "src/property/UrlProperty";
+import {IAttributeValue} from "src/types/IAttributeValue";
 
 export type IPaintEnums = "none" | " context-fill" | "context-stroke";
 
@@ -10,7 +11,7 @@ export type PaintValue = IPaintEnums | AbstractElements | RGBA | UrlProperty | n
 /**
  * https://www.w3.org/TR/SVG/painting.html#SpecifyingPaint
  */
-export class PaintProperty extends Property {
+export class PaintProperty extends Property implements IAttributeValue {
   private _parsedValue: PaintValue;
 
   get value(): PaintValue {

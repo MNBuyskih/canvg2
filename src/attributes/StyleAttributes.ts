@@ -1,36 +1,31 @@
-import {StyleAttribute} from "src/attributes/StyleAttribute";
-import {AbstractElements} from "src/elements/AbstractElements";
+import {AbstractStyle} from "src/styles/AbstractStyle";
+import {StrokeStyle} from "src/styles/StrokeStyle";
 import {IStyleAttributes} from "src/types/IStyleAttributes";
 
-export class StyleAttributes {
-  private attributes: { [key: string]: StyleAttribute } = {};
+export class StyleAttributes implements IStyleAttributes {
+  private _attr: { [key: string]: AbstractStyle } = {};
 
-  constructor(attributes: Attr[], private element: AbstractElements) {
+  constructor(attributes: Attr[]) {
     this.fillAttributes(attributes);
   }
 
+  get stroke(): StrokeStyle | undefined {
+    return this._attr.stroke as StrokeStyle;
+  }
+
   private fillAttributes(attributes: Attr[]) {
-    this.attributes = attributes
+    this._attr = attributes
       .reduce((memo, attribute) => {
         const {name, value} = attribute;
-        memo[name] = new StyleAttribute(name as keyof IStyleAttributes, value, this.element);
+        memo[name] = this.getInstanceByName(name as keyof IStyleAttributes, value);
         return memo;
-      }, this.attributes);
+      }, this._attr);
   }
 
-  static create(attributes: Attr[], element: AbstractElements): Record<keyof IStyleAttributes, StyleAttribute | undefined> {
-    // @ts-ignore
-    const attrs = new StyleAttributes(attributes, element) as IStyleAttributes;
-
-    // @ts-ignore
-    return new Proxy(attrs, {
-      get(target: StyleAttributes, name: keyof IStyleAttributes) {
-        return target.get(name);
-      },
-    });
-  }
-
-  get(name: keyof IStyleAttributes): StyleAttribute {
-    return this.attributes[name];
+  private getInstanceByName(name: keyof IStyleAttributes, value: string) {
+    switch (name) {
+      case "stroke":
+        return new StrokeStyle(value);
+    }
   }
 }
