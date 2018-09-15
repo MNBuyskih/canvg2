@@ -2,7 +2,7 @@ import {CanVG2} from "src/CanVG2";
 import {ElementsDummy, ElementsSvg} from "src/elements";
 import {ElementsLine} from "src/elements/ElementsLine";
 import {ElementsFactory} from "src/factory/ElementsFactory";
-import {mockedCanvas} from "tests/mockedCanvas";
+import {mockedCanvas} from "tests/mock";
 import {xml} from "tests/xml";
 
 describe(ElementsFactory, () => {

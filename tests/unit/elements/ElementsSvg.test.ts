@@ -1,5 +1,4 @@
-import {mockedCanvas} from "tests/mockedCanvas";
-import {CanVG2} from "src/CanVG2";
+import {mockedCanvg} from "tests/mock";
 import {ElementsSvg} from "src/elements";
 import {ElementsFactory} from "src/factory/ElementsFactory";
 import {xml} from "tests/xml";
@@ -10,7 +9,7 @@ describe(ElementsSvg, () => {
       const el = ElementsFactory.create(xml(`<svg><line/></svg>`));
       const child = el.children[0];
       spyOn(child, "render");
-      el.render(new CanVG2(mockedCanvas, xml(`<svg><line/></svg>`)));
+      el.render(mockedCanvg(`<svg><line/></svg>`));
       expect(child.render).toBeCalled();
     });
   });

@@ -1,5 +1,5 @@
-import {PaintProperty} from "src/property/PaintProperty";
+import {StrokeStyle} from "src/styles/StrokeStyle";
 
 export interface IStyleAttributes {
-  stroke: PaintProperty;
+  stroke?: StrokeStyle;
 }

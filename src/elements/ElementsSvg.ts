@@ -3,6 +3,6 @@ import {AbstractElements} from "src/elements/AbstractElements";
 
 export class ElementsSvg extends AbstractElements {
   render(canvg: CanVG2): void {
-    this.children.forEach(c => c.render(canvg));
+    this.children.forEach(c => c.draw(canvg));
   }
 }
