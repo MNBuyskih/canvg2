@@ -1,3 +1,4 @@
+import {CanVG2} from "src/CanVG2";
 import {AbstractStyle} from "src/styles/AbstractStyle";
 import {StrokeStyle} from "src/styles/StrokeStyle";
 import {IStyleAttributes} from "src/types/IStyleAttributes";
@@ -27,5 +28,18 @@ export class StyleAttributes implements IStyleAttributes {
       case "stroke":
         return new StrokeStyle(value);
     }
+  }
+
+  beforeRender(canvg: CanVG2) {
+    Object.keys(this._attr)
+      .forEach(styleName => {
+        console.log(this._attr[styleName]);
+        this._attr[styleName].beforeRender(canvg);
+      });
+  }
+
+  afterRender(canvg: CanVG2) {
+    Object.keys(this._attr)
+      .forEach(styleName => this._attr[styleName].afterRender(canvg));
   }
 }

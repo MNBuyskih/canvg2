@@ -13,4 +13,18 @@ export abstract class AbstractElements {
   }
 
   public abstract render(canvg: CanVG2): void;
+
+  public draw(canvg: CanVG2): void {
+    this.beforeRender(canvg);
+    this.render(canvg);
+    this.afterRender(canvg);
+  }
+
+  private beforeRender(canvg: CanVG2) {
+    this.stylesAttributes.beforeRender(canvg);
+  }
+
+  private afterRender(canvg: CanVG2) {
+    this.stylesAttributes.afterRender(canvg);
+  }
 }

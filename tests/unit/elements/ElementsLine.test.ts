@@ -1,13 +1,12 @@
 import {CanVG2} from "src/CanVG2";
 import {ElementsLine} from "src/elements";
-import {mockedCanvas} from "tests/mockedCanvas";
-import {xml} from "tests/xml";
+import {mockedCanvg} from "tests/mock";
 
 describe(ElementsLine, () => {
   describe("render", () => {
     let canvg: CanVG2;
     beforeEach(() => {
-      canvg = new CanVG2(mockedCanvas, xml(`<line x1="0" y1="80" x2="100" y2="20" stroke="black"/>`));
+      canvg = mockedCanvg(`<line x1="0" y1="80" x2="100" y2="20" stroke="black"/>`);
     });
 
     it("should use beginPath, moveTo, lineTo", () => {
