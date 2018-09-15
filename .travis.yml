@@ -16,4 +16,4 @@ addons:
       - librsvg2-dev
       - g++-4.9
 script:
-  - yarn test --coverage
+  - yarn test
