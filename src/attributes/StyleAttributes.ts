@@ -33,7 +33,6 @@ export class StyleAttributes implements IStyleAttributes {
   beforeRender(canvg: CanVG2) {
     Object.keys(this._attr)
       .forEach(styleName => {
-        console.log(this._attr[styleName]);
         this._attr[styleName].beforeRender(canvg);
       });
   }
