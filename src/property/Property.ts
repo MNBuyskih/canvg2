@@ -1,6 +1,7 @@
 import {AbstractElements} from "src/elements/AbstractElements";
+import {IAttributeValue} from "src/types/IAttributeValue";
 
-export class Property {
+export class Property implements IAttributeValue{
   protected _value: string | null;
 
   constructor(value: string | null, protected element?: AbstractElements) {

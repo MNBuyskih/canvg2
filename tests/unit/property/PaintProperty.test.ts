@@ -37,5 +37,18 @@ describe(PaintProperty, () => {
       expect(propertyValue).toBeInstanceOf(UrlProperty);
       expect((propertyValue as UrlProperty).value).toBe(element);
     });
+
+    it("should return 'none' value when passed value is null", () => {
+      expect(new PaintProperty(null).value).toEqual("none");
+    });
+
+    it("should cache result", () => {
+      const prop = new PaintProperty(null);
+      const parsedValue = spyOn(prop, "getParsedValue").and.returnValue("none");
+
+      prop.value;
+      prop.value;
+      expect(parsedValue).toBeCalledTimes(1);
+    });
   });
 });
