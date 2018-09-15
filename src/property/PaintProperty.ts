@@ -15,21 +15,20 @@ export class PaintProperty extends Property implements IAttributeValue {
   private _parsedValue: PaintValue;
 
   get value(): PaintValue {
-    return this.parsedValue();
+    if (this._parsedValue === undefined) {
+      this._parsedValue = this.getParsedValue();
+    }
+    return this._parsedValue;
   }
 
-  private parsedValue(): PaintValue {
-    if (this._parsedValue !== undefined) {
-      return this._parsedValue;
-    }
-
+  getParsedValue(): PaintValue {
     if (this._value === null) {
-      return this._parsedValue = "none";
+      return "none";
     }
 
     const value = this._value.trim();
 
-    return this._parsedValue = this.enumValues(value) ||
+    return this.enumValues(value) ||
       this.childValue(value) ||
       this.childNValue(value) ||
       this.colorValue(value) ||
@@ -39,13 +38,13 @@ export class PaintProperty extends Property implements IAttributeValue {
 
   private enumValues(value: string): IPaintEnums | null {
     return ["none", "context-fill", "context-stroke"].indexOf(value) >= 0
-      ? (this._parsedValue = value as IPaintEnums)
+      ? (value as IPaintEnums)
       : null;
   }
 
   private childValue(value: string): AbstractElements | null {
     return this.element && value === "child"
-      ? (this._parsedValue = this.element.children[0] || null)
+      ? (this.element.children[0] || null)
       : null;
   }
 
@@ -55,7 +54,7 @@ export class PaintProperty extends Property implements IAttributeValue {
         .replace("child(", "")
         .replace(")", "");
       const n = parseFloat(_n) - 1;
-      return this._parsedValue = this.element.children[n] || null;
+      return this.element.children[n] || null;
     } else {
       return null;
     }
@@ -63,9 +62,9 @@ export class PaintProperty extends Property implements IAttributeValue {
 
   private colorValue(value: string): RGBA | null {
     try {
-      return this._parsedValue = new RGBA(value);
+      return new RGBA(value);
     } catch (e) {
-      return this._parsedValue = null;
+      return null;
     }
   }
 
