@@ -17,15 +17,13 @@ export class StrokeStyle extends AbstractStyle {
       return;
     }
 
-    if (typeof value == "string") {
+    if (value === "none") {
+      canvg.context.strokeStyle = "transparent";
+    } else if (typeof value == "string") {
       canvg.context.strokeStyle = value;
-    }
-
-    if (value instanceof UrlProperty) {
+    } else if (value instanceof UrlProperty) {
       // canvg.context.strokeStyle = value;
-    }
-
-    if (value instanceof RGBA) {
+    } else if (value instanceof RGBA) {
       canvg.context.strokeStyle = value.color;
     }
   }

@@ -12,4 +12,10 @@ describe(StrokeStyle, () => {
     new StrokeStyle("#ffffff").beforeRender(canvg);
     expect(canvg.context.strokeStyle).toEqual("white");
   });
+
+  it("should set transparent color when style is none", () => {
+    const canvg = mockedCanvg();
+    new StrokeStyle("none").beforeRender(canvg);
+    expect(canvg.context.strokeStyle).toEqual("transparent");
+  });
 });

@@ -4,7 +4,7 @@ import {RGBA} from "src/property/RGBA";
 import {UrlProperty} from "src/property/UrlProperty";
 import {IAttributeValue} from "src/types/IAttributeValue";
 
-export type IPaintEnums = "none" | " context-fill" | "context-stroke";
+export type IPaintEnums = "none" | "context-fill" | "context-stroke";
 
 export type PaintValue = IPaintEnums | AbstractElements | RGBA | UrlProperty | null;
 
